@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#034D4E">
+
+    <github.hellocsl.cursorwheel.CursorWheelLayout
+        android:id="@+id/wheel_text"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_centerHorizontal="true"
+        app:wheelCursorColor="#009688"
+        app:wheelCursorHeight="19dp"
+        app:wheelItemRotateMode="none"
+        android:visibility="gone"
+        app:wheelSelectedAngle="270">
+    </github.hellocsl.cursorwheel.CursorWheelLayout>
+
+    <TextView
+        android:id="@+id/id_wheel_menu_center_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Text Wheel = "
+        android:textColor="#009688"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        />
+
+    <github.hellocsl.cursorwheel.CursorWheelLayout
+        android:id="@+id/wheel_image"
+        android:layout_below="@+id/wheel_text"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_centerHorizontal="true"
+        app:wheelCursorColor="#034D4E"
+        app:wheelCursorHeight="19dp"
+
+        android:layout_centerInParent="true"
+        app:wheelGuideLineColor="#034D4E"
+        app:wheelBackgroundColor="#049293"
+        app:wheelGuideLineWidth="10dp"
+
+        app:wheelItemRotateMode="none"
+        app:wheelSelectedAngle="270">
+    </github.hellocsl.cursorwheel.CursorWheelLayout>
+
+    <ImageView
+        android:id="@+id/wheel_menu_item_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:layout_centerInParent="true"
+        android:scaleType="centerInside"/>
+
+
+    <TextView
+        android:id="@+id/id_wheel_menu_center_item2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Image Wheel = "
+        android:textColor="#009688"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:layout_below="@id/wheel_text"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        />
+</RelativeLayout>
