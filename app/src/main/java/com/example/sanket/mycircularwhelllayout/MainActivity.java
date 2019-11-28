@@ -1,4 +1,5 @@
 package com.example.sanket.mycircularwhelllayout;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
@@ -9,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
     MenuItem search;
     SearchView searchView;
     Button btnDelivery;
+    FrameLayout clvFrame;
+
 
     CursorWheelLayout wheel_text, wheel_image;
     List<MenuItemData> lstText;
@@ -56,12 +61,33 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
     FrameLayout fmCenter;
     FloatingActionMenu actionMenu, actionMenu2;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnDelivery = (Button)findViewById(R.id.btnDelivery);
+        clvFrame = (FrameLayout) findViewById(R.id.clvFrame);
 
+////////////////////////////dynamic view load
+        LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = vi.inflate(R.layout.clv_layout, null);
+
+// fill in any details dynamically here
+        Button b1 = (Button) v.findViewById(R.id.btn1);
+        b1.setText("new");
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Button1", Toast.LENGTH_SHORT).show();
+                clvFrame.setVisibility(View.INVISIBLE);
+
+            }
+        });
+// insert into main view
+        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.clvFrame);
+        insertPoint.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+/////////////////////////////////////////
         initViews();
         loadData();
         wheel_text.setOnMenuSelectedListener(this);
@@ -216,11 +242,11 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
             @Override
             public void onItemClick(View view, int pos) {
                 //actionMenu.close(true);
+                clvFrame.setVisibility(View.INVISIBLE);
                 Log.i("My Menu = ","setOnMenuItemClickListener");
                 Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
 
@@ -251,6 +277,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
                 //Button btn = lstImage.get(pos).imageDescription;
                 //Toast.makeText(this, "Courier", Toast.LENGTH_SHORT).show();
                 ///////for subactionbutton = fab button ///////////
+                clvFrame.setVisibility(View.VISIBLE);
                 SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
                 final ImageView itemIcon1 = new ImageView(this);
                 final ImageView itemIcon2 = new ImageView(this);
@@ -288,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
                     @Override
                     public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
 
-
+                        
                     }
 
                     @Override
