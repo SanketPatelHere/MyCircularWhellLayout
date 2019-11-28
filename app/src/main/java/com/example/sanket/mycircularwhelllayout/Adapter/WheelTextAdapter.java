@@ -1,12 +1,13 @@
 package com.example.sanket.mycircularwhelllayout.Adapter;
 import android.content.Context;
-import android.support.v4.app.ActivityCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
 
 import com.example.sanket.mycircularwhelllayout.Data.MenuItemData;
 import com.example.sanket.mycircularwhelllayout.R;

@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.drawerlayout.widget.DrawerLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
+    android:id="@+id/d"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.appcompat.widget.Toolbar>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#034D4E">
 
 
@@ -41,6 +52,7 @@
         app:wheelCursorColor="#034D4E"
         app:wheelCursorHeight="19dp"
 
+        
         android:layout_centerInParent="true"
         app:wheelGuideLineColor="#034D4E"
         app:wheelBackgroundColor="#049293"
@@ -78,4 +90,28 @@
             android:text="Anything"
             android:textColor="#fff"/>
     </FrameLayout>
+
+    <Button
+        android:id="@+id/btnDelivery"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#049293"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/pin"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:text="Delivery: 44 Rue de I'Atlas, Maarif, Morocco"
+        android:textColor="#fff" />
 </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/navigation_menu"
+        android:background="#034D4E"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#fff"/>
+</androidx.drawerlayout.widget.DrawerLayout>
