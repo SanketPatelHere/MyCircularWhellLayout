@@ -2,6 +2,7 @@ package com.example.sanket.mycircularwhelllayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.sanket.mycircularwhelllayout.Adapter.WheelImageAdapter;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
     CursorWheelLayout wheel_text, wheel_image;
     List<MenuItemData> lstText;
     List<ImageData> lstImage;
+    FrameLayout fmCenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
         wheel_text.setAdapter(adapter);
 
         lstImage = new ArrayList<>();
+        //lstImage.add(new ImageData(R.drawable.anything_icon, "Anything"));
         lstImage.add(new ImageData(R.drawable.bein_etre, "Bein_etre"));
         lstImage.add(new ImageData(R.drawable.bien_bio, "Bien_bio"));
         lstImage.add(new ImageData(R.drawable.marche, "Marche"));
@@ -51,13 +54,20 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
 
         WheelImageAdapter imageAdapter = new WheelImageAdapter(getBaseContext(), lstImage);
         wheel_image.setAdapter(imageAdapter);
-
+        
+        fmCenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Anything", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initViews()
     {
         wheel_text = (CursorWheelLayout)findViewById(R.id.wheel_text);
         wheel_image = (CursorWheelLayout)findViewById(R.id.wheel_image);
+        fmCenter = (FrameLayout) findViewById(R.id.fmCenter);
     }
 
     @Override
@@ -72,4 +82,5 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
         }
 
     }
+    
 }

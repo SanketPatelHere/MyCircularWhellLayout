@@ -3,11 +3,17 @@
     <item android:state_pressed = "false">
         <shape android:shape = "oval">
             <solid android:color = "#049293"/>
+            <stroke
+                android:width="10dp"
+                android:color="#034D4E" />
         </shape>
     </item>
     <item android:state_pressed = "true">
         <shape android:shape = "oval">
             <solid android:color = "#049285"/>
+            <stroke
+                android:width="10dp"
+                android:color="#034D4E" />
         </shape>
     </item>
 

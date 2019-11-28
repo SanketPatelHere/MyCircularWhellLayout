@@ -27,4 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'github.hellocsl:CursorWheelLayout:1.1.0'
+    implementation 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
+
 }

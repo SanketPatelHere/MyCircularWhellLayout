@@ -3,6 +3,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.sanket.mycircularwhelllayout.Data.ImageData;
 import com.example.sanket.mycircularwhelllayout.Data.MenuItemData;
@@ -33,7 +34,9 @@ public class WheelImageAdapter extends CursorWheelLayout.CycleWheelAdapter {
         ImageData data = getItem(position);
         View root = inflater.inflate(R.layout.wheel_image_layout, null ,false);
         ImageView imageView = (ImageView)root.findViewById(R.id.wheel_menu_item_iv);
+        TextView textView = (TextView)root.findViewById(R.id.myimageText);
         imageView.setImageResource(data.imageResource);
+        textView.setText(data.imageDescription);
         return root;
     }
 

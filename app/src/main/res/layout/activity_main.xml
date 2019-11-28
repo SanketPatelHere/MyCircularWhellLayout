@@ -7,6 +7,7 @@
     tools:context=".MainActivity"
     android:background="#034D4E">
 
+
     <github.hellocsl.cursorwheel.CursorWheelLayout
         android:id="@+id/wheel_text"
         android:layout_width="280dp"
@@ -20,7 +21,7 @@
     </github.hellocsl.cursorwheel.CursorWheelLayout>
 
     <TextView
-        android:id="@+id/id_wheel_menu_center_item"
+        android:id="@+id/id_wheel_menu_center_item1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -34,8 +35,8 @@
     <github.hellocsl.cursorwheel.CursorWheelLayout
         android:id="@+id/wheel_image"
         android:layout_below="@+id/wheel_text"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="340dp"
+        android:layout_height="340dp"
         android:layout_centerHorizontal="true"
         app:wheelCursorColor="#034D4E"
         app:wheelCursorHeight="19dp"
@@ -49,25 +50,32 @@
         app:wheelSelectedAngle="270">
     </github.hellocsl.cursorwheel.CursorWheelLayout>
 
-    <ImageView
-        android:id="@+id/wheel_menu_item_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
+    <FrameLayout
+        android:id="@+id/fmCenter"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="5dp"
         android:layout_centerInParent="true"
-        android:scaleType="centerInside"/>
+        android:background="@drawable/round_button"
+        >
 
-
-    <TextView
-        android:id="@+id/id_wheel_menu_center_item2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Image Wheel = "
-        android:textColor="#009688"
-        android:layout_margin="10dp"
-        android:visibility="gone"
-        android:layout_below="@id/wheel_text"
-        style="@style/Base.TextAppearance.AppCompat.Large"
-        />
+        <ImageView
+            android:id="@+id/btnAnything"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:elevation="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/anything_icon"/>
+        <TextView
+            android:id="@+id/tvAnything"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:layout_marginTop="50px"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:gravity="center"
+            android:text="Anything"
+            android:textColor="#fff"/>
+    </FrameLayout>
 </RelativeLayout>
