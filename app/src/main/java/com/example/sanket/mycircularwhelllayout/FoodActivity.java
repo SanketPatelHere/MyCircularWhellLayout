@@ -86,6 +86,13 @@ public class FoodActivity extends AppCompatActivity {
             public void myOnLongClick(View v, int position) {
                 Toast.makeText(getApplicationContext(), "MyOnLongClick", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void myOnDialogClose(MenuItem item) {
+                //for once again set filter icon = when dialog close
+                //Toast.makeText(getApplicationContext(), "myOnDialogClose = "+item, Toast.LENGTH_SHORT).show();
+                item.setIcon(R.drawable.filter_icon);
+            }
         };
 
         fa = new FoodAdapter(this, lst, listener);
@@ -104,8 +111,6 @@ public class FoodActivity extends AppCompatActivity {
         MenuInflater mi = getMenuInflater();
         mi.inflate(R.menu.search_menu, menu);
 
-        MenuItem item3 = menu.findItem(R.id.filterClose);
-        item3.setVisible(false);
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);
@@ -124,50 +129,21 @@ public class FoodActivity extends AppCompatActivity {
         });
         return true;
     }
-    boolean id2 = true;
-    int id;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        id = item.getItemId();
-
-        if(id==R.id.filterClose)
-        {
-            Drawable myDrawable = getResources().getDrawable(R.drawable.filter_icon);
-            item.setIcon(myDrawable);
-            id = R.id.filter;
-            Log.i("My outer menuicon = ","second false "+id2);
-            id2 = true;
-        }
+        int id = item.getItemId();
         switch (item.getItemId()) {
             //int id = item.getItemId();
             case android.R.id.home:
                 finish();
-                //NavUtils.navigateUpFromSameTask(this);
                 return true;
             case R.id.filter:
-                Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
-                //int id = item.getItemId();
-
-                //if(id==R.id.filter)
-                //if(id2)
-                //{
+                //Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
                     Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                     item.setIcon(myDrawable);
-                    Log.i("My menuicon = ","first true "+id2);
-                    id = R.id.filterClose;
-                    id2 = false;
-                //}
-                /*else //if(false)
-                {
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.filter_icon);
-                    item.setIcon(myDrawable);
-                    Log.i("My menuicon = ","second false "+id2);
-                    id2 = true;
-                }*/
-                CustomDialogClass cd = new CustomDialogClass(this);
+                CustomDialogClass cd = new CustomDialogClass(this, listener, item);
                 cd.show();
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.filter_icon);
-                item.setIcon(myDrawable3);
+
                 return true;
 
             default:

@@ -26,9 +26,13 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     public Activity c;
     public Dialog d;
     public Button yes, no;
-    public CustomDialogClass(Activity a) {
+    MyClickListener listener;
+    MenuItem item;
+    public CustomDialogClass(Activity a, MyClickListener listener, MenuItem item) {
         super(a);
         this.c = a;
+        this.listener = listener;
+        this.item = item;
     }
 
     @Override
@@ -43,6 +47,7 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c, "Yessss", Toast.LENGTH_SHORT).show();
+                listener.myOnDialogClose(item);
                 dismiss();
 
                 /*MenuInflater mi = getMenuInflater();
@@ -64,11 +69,14 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c, "Noooo", Toast.LENGTH_SHORT).show();
+                listener.myOnDialogClose(item);
                 dismiss();
                 Log.i("My dialog = ", "dismiss");
 
             }
         });
+        //listener.myOnDialogClose(item);
+
     }
 
 
