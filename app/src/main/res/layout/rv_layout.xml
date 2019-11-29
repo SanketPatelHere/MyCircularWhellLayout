@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imgFood"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/marche"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#034d4e">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/tvShopName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pizza Coutry"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:textColor="#fff"
+                />
+            <TextView
+                android:id="@+id/tvFoodName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Italian Pizza"
+                android:textColor="#eee"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/beforename"
+                />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0.0 (0)"
+                android:textColor="#eee"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/star_icon"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="30 mins"
+                android:textColor="#eee"
+                android:padding="5dp"
+                android:gravity="right|top"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:gravity="right|top"
+                />
+
+            <!--<TextView
+                android:id="@+id/imgFavIcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:drawableRight="@drawable/fav_icon"
+                android:gravity="right|top"
+                />-->
+
+            <ImageView
+                android:id="@+id/imgFavIcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingLeft="50dp"
+                android:src="@drawable/fav_icon" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

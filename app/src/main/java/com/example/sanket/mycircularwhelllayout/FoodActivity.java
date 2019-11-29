@@ -12,6 +12,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sanket.DataPojo;
+import com.example.sanket.FoodAdapter;
+
+import java.util.ArrayList;
 
 //import androidx.appcompat.app.AppCompatActivity;
 //import android.app.Activity.*;
@@ -20,13 +27,16 @@ public class FoodActivity extends AppCompatActivity {
     ActionBar actionBar;
     MenuItem search;
     SearchView searchView;
+
+    RecyclerView rv;
+    ArrayList<DataPojo> lst;
+    DataPojo dp;
+    FoodAdapter fa;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
-
-
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -36,6 +46,19 @@ public class FoodActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);*/
 
         //toolbar.setNavigationIcon(R.drawable.anything_icon);
+
+
+
+
+        rv = (RecyclerView)findViewById(R.id.rv);
+        lst = new ArrayList<>();
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Ice cream parlor", "chocolate ice creame", "0.0", "40 mins"));
+        lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+
+        fa = new FoodAdapter(this, lst);
+        rv.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        rv.setAdapter(fa);
+
     }
 
     @Override
