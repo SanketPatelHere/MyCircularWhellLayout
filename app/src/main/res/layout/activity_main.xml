@@ -16,6 +16,7 @@
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="gfdgdfg gfdgdf"
             android:background="#fff"
             />
 
@@ -29,10 +30,7 @@
         android:id="@+id/clvFrame"
         android:layout_width="match_parent"
         android:layout_height="200px"
-        android:background="#fff"
-        android:visibility="gone"
         android:layout_above="@+id/wheel_text">
-
     </FrameLayout>
 
     <github.hellocsl.cursorwheel.CursorWheelLayout

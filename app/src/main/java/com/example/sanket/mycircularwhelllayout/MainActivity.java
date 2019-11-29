@@ -1,7 +1,6 @@
 package com.example.sanket.mycircularwhelllayout;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,13 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,20 +28,18 @@ import com.example.sanket.mycircularwhelllayout.Adapter.WheelImageAdapter;
 import com.example.sanket.mycircularwhelllayout.Adapter.WheelTextAdapter;
 import com.example.sanket.mycircularwhelllayout.Data.ImageData;
 import com.example.sanket.mycircularwhelllayout.Data.MenuItemData;
-//import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
-import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import github.hellocsl.cursorwheel.CursorWheelLayout;
+
+//import androidx.appcompat.app.AppCompatActivity;
+//import androidx.appcompat.widget.SearchView;
+//import com.google.android.material.appbar.AppBarLayout;
 
 public class MainActivity extends AppCompatActivity implements CursorWheelLayout.OnMenuSelectedListener{
     NavigationView nv;
@@ -70,16 +66,38 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
         clvFrame = (FrameLayout) findViewById(R.id.clvFrame);
 
 ////////////////////////////dynamic view load
+
+
+
         LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = vi.inflate(R.layout.clv_layout, null);
 
 // fill in any details dynamically here
-        Button b1 = (Button) v.findViewById(R.id.btn1);
-        b1.setText("new");
+        ImageView b1 = (ImageView) v.findViewById(R.id.btn1);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Button1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Clicked 1", Toast.LENGTH_SHORT).show();
+                clvFrame.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        ImageView b2 = (ImageView) v.findViewById(R.id.btn2);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Clicked 2", Toast.LENGTH_SHORT).show();
+                clvFrame.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        ImageView b3 = (ImageView) v.findViewById(R.id.btn3);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Clicked 3", Toast.LENGTH_SHORT).show();
                 clvFrame.setVisibility(View.INVISIBLE);
 
             }
@@ -152,8 +170,12 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater mi = getMenuInflater();
         mi.inflate(R.menu.search_menu, menu);
+
+        MenuItem item2 = menu.findItem(R.id.filter);
+        item2.setVisible(false);
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);
@@ -166,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(MainActivity.this, "Text change = "+newText, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Searching for = "+newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -190,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
         }
         switch (item.getItemId())
         {
+
             case R.id.home:
                 Toast.makeText(MainActivity.this, "Navigation My Home", Toast.LENGTH_SHORT).show();
             case R.id.basket:
@@ -198,6 +221,8 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
                 Toast.makeText(MainActivity.this, "Navigation My Orders", Toast.LENGTH_SHORT).show();
             case R.id.account:
                 Toast.makeText(MainActivity.this, "Navigation My Account", Toast.LENGTH_SHORT).show();
+            case R.id.filter:
+                Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
             default:
                 return true;
         }
@@ -243,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
             public void onItemClick(View view, int pos) {
                 //actionMenu.close(true);
                 clvFrame.setVisibility(View.INVISIBLE);
+
                 Log.i("My Menu = ","setOnMenuItemClickListener");
                 Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
@@ -260,24 +286,31 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onItemSelected(CursorWheelLayout parent, View view, int pos) {
-        if(parent.getId()==R.id.wheel_text)
-        {
-            Toast.makeText(this, "Selected = "+lstText.get(pos).mTitel, Toast.LENGTH_SHORT).show();
+        if (parent.getId() == R.id.wheel_text) {
+            Toast.makeText(this, "Selected = " + lstText.get(pos).mTitel, Toast.LENGTH_SHORT).show();
         }
         else if(parent.getId()==R.id.wheel_image)
         {
+            //actionMenu.close(true);
             /*if(actionMenu.isOpen()==true)
             {
                 actionMenu.close(true);
             }*/
+            clvFrame.setVisibility(View.INVISIBLE);
             Toast.makeText(this, "Selected = "+lstImage.get(pos).imageDescription, Toast.LENGTH_SHORT).show();
+            if(lstImage.get(pos).imageDescription=="Jai faim")
+            {
+                Intent i = new Intent(MainActivity.this, FoodActivity.class);
+                startActivity(i);
+            }
             if(lstImage.get(pos).imageDescription=="Courier")
             {
-
+                clvFrame.setVisibility(View.VISIBLE);
                 //Button btn = lstImage.get(pos).imageDescription;
                 //Toast.makeText(this, "Courier", Toast.LENGTH_SHORT).show();
-                ///////for subactionbutton = fab button ///////////
-                clvFrame.setVisibility(View.VISIBLE);
+
+                ///////for subactionbutton = fab button ////////////
+                /*
                 SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
                 final ImageView itemIcon1 = new ImageView(this);
                 final ImageView itemIcon2 = new ImageView(this);
@@ -301,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
                 //ImageView bt = (ImageView)findViewById(R.id.wheel_image);
                 //FrameLayout btn1 = (FrameLayout)findViewById(R.id.fmCenter);
                 ///
-                actionMenu = new FloatingActionMenu.Builder(this)
+                actionMenu = new FloatingActionMenu.Builder(MainActivity.this)
                         .addSubActionView(button1)
                         .addSubActionView(button2)
                         .addSubActionView(button3)
@@ -315,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
                     @Override
                     public void onMenuOpened(FloatingActionMenu floatingActionMenu) {
 
-                        
+
                     }
 
                     @Override
@@ -349,13 +382,14 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
                         Toast.makeText(MainActivity.this, "button3", Toast.LENGTH_SHORT).show();
                     }
                 });
-
+                */
                 ///////////////////////////////////////////////////
 
 
 
 
             }
+
         }
 
     }
