@@ -20,10 +20,11 @@ import java.util.ArrayList;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
     ArrayList<DataPojo> mylst;
     Activity activity;
-
-    public FoodAdapter(Activity activity, ArrayList<DataPojo> mylst) {
+    MyClickListener listener;
+    public FoodAdapter(Activity activity, ArrayList<DataPojo> mylst, MyClickListener listener) {
         this.activity = activity;
         this.mylst = mylst;
+        this.listener = listener;
     }
 
     @Override
@@ -50,17 +51,35 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvRating = (TextView) itemView.findViewById(R.id.tvRating);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
             imgFavIcon = (ImageView) itemView.findViewById(R.id.imgFavIcon);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //DataPojo dp = mylst.get(position);
+                    listener.myOnClick(v,10);
+
+                }
+            });
         }
     }
 
     @Override
-    public void onBindViewHolder(FoodAdapter.FoodViewHolder holder, int position) {
+    public void onBindViewHolder(FoodAdapter.FoodViewHolder holder, final int position) {
         DataPojo dp = mylst.get(position);
         holder.imgFood.setImageResource(dp.getImg());
         holder.tvShopName.setText(dp.getShopName());
         holder.tvFoodName.setText(dp.getFoodName());
         holder.tvRating.setText(dp.getRating());
         holder.tvTime.setText(dp.getTime());
+        holder.imgFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.myOnClick((position+1));
+            }
+        });
+
+
+
         if(dp.getFavIconValue()==0)
         {
             //holder.imgFavIcon.setText(R.drawable.fav_icon);
