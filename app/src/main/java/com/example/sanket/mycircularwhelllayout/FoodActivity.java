@@ -25,6 +25,7 @@ import com.example.sanket.CustomDialogClass;
 import com.example.sanket.DataPojo;
 import com.example.sanket.FoodAdapter;
 import com.example.sanket.MyClickListener;
+import com.example.sanket.ShopFood;
 import com.example.sanket.ShowShopFoodActivity;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class FoodActivity extends AppCompatActivity {
 
     RecyclerView rv;
     ArrayList<DataPojo> lst;
+    ArrayList<DataPojo> filterList;
     DataPojo dp;
     FoodAdapter fa;
     MyClickListener listener;
@@ -63,13 +65,13 @@ public class FoodActivity extends AppCompatActivity {
         rv = (RecyclerView)findViewById(R.id.rv);
         lst = new ArrayList<>();
         lst.add(new DataPojo(R.drawable.chhouitte, 0, "Ice cream parlor", "chocolate ice creame", "0.0", "40 mins"));
-        lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.bien_bio , 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.jai_faim, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Studio", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.jai_faim, 0, "Ice cream one", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "One shop", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.jai_faim, 0, "Your shop", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Mac Donalds", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.jai_faim , 0, "Chocolate shake", "Italian Pizza", "0.0 (0)", "30 mins"));
 
 
 
@@ -152,6 +154,26 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 Toast.makeText(FoodActivity.this, "Searching for = "+newText, Toast.LENGTH_SHORT).show();
+                if(newText.isEmpty())
+                {
+                    filterList = lst;
+                }
+                else
+                {
+                    ArrayList<DataPojo> filteredList = new ArrayList<>();
+                    for(DataPojo row:lst)
+                    {
+                        Log.i("My row.getFoodName() = ",row.getFoodName()+"");
+                        if(row.getShopName().toLowerCase().contains(newText.toLowerCase()) || row.getFoodName().toLowerCase().contains(newText.toLowerCase()))
+                        {
+                            filteredList.add(row);
+                        }
+                        filterList = filteredList;
+                    }
+                }
+
+
+                fa.setFilter(filterList);
                 return false;
             }
         });

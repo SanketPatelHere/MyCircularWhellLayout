@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,13 +15,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.widget.Toast;
 
 import com.example.sanket.mycircularwhelllayout.FoodActivity;
 import com.example.sanket.mycircularwhelllayout.MainActivity;
 import com.example.sanket.mycircularwhelllayout.R;
-public class ShowShopFoodActivity extends AppCompatActivity {
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShowShopFoodActivity extends AppCompatActivity //implements SearchView.OnQueryTextListener
+{
 
     Toolbar toolbar;
     ActionBar actionBar;
@@ -31,6 +39,11 @@ public class ShowShopFoodActivity extends AppCompatActivity {
     ImageView imgFood2, imgFavIcon2;
     TextView tvShopName2, tvFoodName2, tvRating2, tvTime2;
 
+    RecyclerView rv2;
+    ArrayList<ShopFood> lstShopFood;
+    ArrayList<ShopFood> filterList;
+    ShopFoodAdapter sfd;
+    TextView tvQuantity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +58,7 @@ public class ShowShopFoodActivity extends AppCompatActivity {
         tvRating2 = (TextView) findViewById(R.id.tvRating2);
         tvTime2 = (TextView) findViewById(R.id.tvTime2);
         imgFavIcon2 = (ImageView)findViewById(R.id.imgFavIcon2);
-
+        tvQuantity = (TextView)findViewById(R.id.tvQuantity);
         //Intent i = getIntent();
         //String data = getIntent().getStringExtra("data");
 
@@ -68,6 +81,21 @@ public class ShowShopFoodActivity extends AppCompatActivity {
         tvTime2.setText(dp.getTime());
         imgFavIcon2.setImageResource(dp.getFavIconValue());
 
+        rv2 = (RecyclerView)findViewById(R.id.rv2);
+        lstShopFood = new ArrayList<>();
+        lstShopFood.add(new ShopFood(R.drawable.marche, "Orange juice 1","₹ 10"));
+        lstShopFood.add(new ShopFood(R.drawable.jai_faim, "Orange shake 1","₹ 20"));
+        lstShopFood.add(new ShopFood(R.drawable.marche, "Mango juice 2","₹ 10"));
+        lstShopFood.add(new ShopFood(R.drawable.jai_faim, "Mango shake 2","₹ 20"));
+        lstShopFood.add(new ShopFood(R.drawable.marche, "Abc icecream","₹ 20"));
+        lstShopFood.add(new ShopFood(R.drawable.jai_faim, "Aaa cake shop","₹ 20"));
+        lstShopFood.add(new ShopFood(R.drawable.marche, "Xyz nuddles","₹ 20"));
+        lstShopFood.add(new ShopFood(R.drawable.jai_faim, "Zzz chocolate","₹ 20"));
+
+        sfd = new ShopFoodAdapter(this, lstShopFood);
+        //sfd.notifyDataSetChanged();
+        rv2.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        rv2.setAdapter(sfd);
 
     }
     @Override
@@ -94,11 +122,39 @@ public class ShowShopFoodActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 Toast.makeText(ShowShopFoodActivity.this, "Searching for = "+newText, Toast.LENGTH_SHORT).show();
 
+                if(newText.isEmpty())
+                {
+                    filterList = lstShopFood;
+                    tvQuantity.setText("search another item");
+                }
+                else
+                {
+                    ArrayList<ShopFood> filteredList = new ArrayList<>();
+                    for(ShopFood row:lstShopFood)
+                    {
+                        Log.i("My row.getFoodName() = ",row.getFoodName()+"");
+                        if(row.getFoodName().toLowerCase().contains(newText.toLowerCase()))
+                        {
+                            filteredList.add(row);
+                        }
+                        else
+                        {
+                            tvQuantity.setText("search another item");
+                        }
+                        filterList = filteredList;
+                        tvQuantity.setText(newText+" ("+filterList.size()+" items)");
+
+                    }
+                }
+
+                //tvQuantity.setText("more items");
+                sfd.setFilter(filterList);
                 return false;
             }
         });
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -125,4 +181,7 @@ public class ShowShopFoodActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
 }

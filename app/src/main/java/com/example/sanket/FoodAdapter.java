@@ -1,6 +1,7 @@
 package com.example.sanket;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
  * Created by Ekta Bhatt on 29-11-2019.
  */
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
-    ArrayList<DataPojo> mylst;
     Activity activity;
+    ArrayList<DataPojo> mylst;
     MyClickListener listener;
     public FoodAdapter(Activity activity, ArrayList<DataPojo> mylst, MyClickListener listener) {
         this.activity = activity;
@@ -89,6 +90,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             //holder.imgFavIcon.setText(R.drawable.fav_icon);
             holder.imgFavIcon.setImageResource(R.drawable.fav_icon);
         }
+    }
+
+    public void setFilter(ArrayList<DataPojo> f)
+    {
+        mylst = f;
+        Log.i("My mylst2 = ",mylst+"");
+        notifyDataSetChanged();
     }
 
 

@@ -111,6 +111,7 @@
         android:orientation="vertical"
         android:background="#034d4e">
         <TextView
+            android:id="@+id/tvQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#034d4e"
