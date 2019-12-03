@@ -1,14 +1,18 @@
 package com.example.sanket.mycircularwhelllayout;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.renderscript.Sampler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -89,7 +93,7 @@ public class FoodActivity extends AppCompatActivity {
 
             @Override
             public void myOnClick(View v, int position) {
-                Toast.makeText(getApplicationContext(), "MyOnClick with view = "+position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "MyOnClick with view = "+position, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -192,12 +196,27 @@ public class FoodActivity extends AppCompatActivity {
                     Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                     item.setIcon(myDrawable);
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
+                cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
+
+                cd.show();
 
                 /*RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tv.getLayoutParams();
                 lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 tv.setLayoutParams(lp);*/
 
-                cd.show();
+                /*final Dialog dialog = new Dialog(this,
+                        android.R.style.Theme_Translucent_NoTitleBar);
+                Window window = cd.getWindow();
+                window.setGravity(Gravity.CENTER);
+
+                window.setLayout(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
+                //dialog.setTitle(null);
+                dialog.setContentView(R.layout.dialoglayout);
+                //dialog.setCancelable(true);
+
+                dialog.show();*/
+
+
 
                 return true;
 

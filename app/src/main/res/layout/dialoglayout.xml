@@ -4,12 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="top|right"
+    android:gravity="top|right"
     android:background="@drawable/curve_shap">
     <!--Price -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/tvDialog"
@@ -25,28 +25,35 @@
             android:orientation="horizontal"
             android:layout_margin="5dp">
             <Button
+                android:id="@+id/btnPrice1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
+                android:background="#ffffff"
                 android:layout_margin="5dp"
                 android:text="₹"/>
             <Button
+                android:id="@+id/btnPrice2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
+                android:background="#ffffff"
                 android:layout_margin="5dp"
-                android:background="#049285"
                 android:text="₹₹"/>
             <Button
+                android:id="@+id/btnPrice3"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
+                android:background="#ffffff"
                 android:layout_margin="5dp"
                 android:text="₹₹₹"/>
             <Button
+                android:id="@+id/btnPrice4"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
+                android:background="#ffffff"
                 android:layout_margin="5dp"
                 android:text="₹₹₹₹"/>
 
@@ -54,164 +61,6 @@
     </LinearLayout>
 
 
-    <!--Time -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Time"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="&lt; 20"
-                android:background="#049285"
-                android:layout_margin="5dp"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="&lt; 60"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="&lt; 120"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <!--Distance -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvDistance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Distance"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp"
-            >
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="&lt; 5"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="#049285"
-                android:text="&lt; 15"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="&lt; 25"/>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <!--Zone -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvZone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Zone"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp">
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="All"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="Delivery location only"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <!--Tag -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvTag"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tag"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="5dp"
-            >
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:background="#049285"
-                android:text="Italian Pizza"/>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="Chocolate ice creame"/>
-
-        </LinearLayout>
-    </LinearLayout>
 
 
 

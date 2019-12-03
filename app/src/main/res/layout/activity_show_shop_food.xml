@@ -89,10 +89,10 @@
 
             <ImageView
                 android:id="@+id/imgFavIcon2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
                 android:gravity="right"
-                android:src="@drawable/fav_icon"
+                android:src="@drawable/unselected_fav"
                 android:paddingLeft="50dp"
                 />
 
@@ -115,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#034d4e"
-            android:text="Juice(1 more items)"
+            android:text="Juice(item)"
             android:textSize="25sp"
             android:textColor="#049285"
             android:gravity="center"/>

@@ -86,10 +86,10 @@
 
             <ImageView
                 android:id="@+id/imgFavIcon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
                 android:gravity="right"
-                android:src="@drawable/fav_icon"
+                android:src="@drawable/unselected_fav"
                 android:paddingLeft="50dp"
                  />
 

@@ -1,6 +1,7 @@
 package com.example.sanket;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     Activity activity;
     ArrayList<DataPojo> mylst;
     MyClickListener listener;
+    SharedPreferences sp;
+    int fav = 0;
     public FoodAdapter(Activity activity, ArrayList<DataPojo> mylst, MyClickListener listener) {
         this.activity = activity;
         this.mylst = mylst;
@@ -58,6 +61,22 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 public void onClick(View v) {
                     //DataPojo dp = mylst.get(position);
                     listener.myOnClick(v,10);
+                }
+            });
+
+            imgFavIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(fav==0)
+                    {
+                        imgFavIcon.setImageResource(R.drawable.selected_fav);
+                        fav = 1;
+                    }
+                    else
+                    {
+                        imgFavIcon.setImageResource(R.drawable.unselected_fav);
+                        fav = 0;
+                    }
                 }
             });
         }

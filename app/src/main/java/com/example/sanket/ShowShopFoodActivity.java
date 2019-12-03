@@ -1,10 +1,13 @@
 package com.example.sanket;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +47,8 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
     ArrayList<ShopFood> filterList;
     ShopFoodAdapter sfd;
     TextView tvQuantity;
+    int fav = 0;
+    SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +101,30 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
         //sfd.notifyDataSetChanged();
         rv2.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         rv2.setAdapter(sfd);
+
+        sp = getApplicationContext().getSharedPreferences("MyPrefData",0);
+        final SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("fav",fav).commit();
+
+
+        imgFavIcon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if(fav==0)
+                if(sp.getInt("fav", -1)==0)
+                {
+                    imgFavIcon2.setImageResource(R.drawable.selected_fav);
+                    fav = 1;
+                    editor.putInt("fav",fav).commit();
+                }
+                else
+                {
+                    imgFavIcon2.setImageResource(R.drawable.unselected_fav);
+                    fav = 0;
+                    editor.putInt("fav",fav).commit();
+                }
+            }
+        });
 
     }
     @Override

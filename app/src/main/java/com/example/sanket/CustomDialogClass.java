@@ -3,6 +3,7 @@ package com.example.sanket;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     public Button yes, no;
     MyClickListener listener;
     MenuItem item;
+    Button btnPrice1, btnPrice2, btnPrice3, btnPrice4;
     public CustomDialogClass(Activity a, MyClickListener listener, MenuItem item) {
         super(a);
         this.c = a;
@@ -43,6 +45,54 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
 
         yes = (Button)findViewById(R.id.btnYes);
         no = (Button)findViewById(R.id.btnNo);
+
+        btnPrice1 = (Button)findViewById(R.id.btnPrice1);
+        btnPrice2 = (Button)findViewById(R.id.btnPrice2);
+        btnPrice3 = (Button)findViewById(R.id.btnPrice3);
+        btnPrice4 = (Button)findViewById(R.id.btnPrice4);
+        btnPrice1.performClick();
+        //btnPrice1.setBackgroundColor(Color.WHITE);
+        btnPrice1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*btnPrice1.setBackgroundColor(Color.GREEN);
+                btnPrice2.setBackgroundColor(Color.WHITE);
+                btnPrice3.setBackgroundColor(Color.WHITE);
+                btnPrice4.setBackgroundColor(Color.WHITE);*/
+                setButton(btnPrice1);
+            }
+        });
+        btnPrice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*btnPrice1.setBackgroundColor(Color.WHITE);
+                btnPrice2.setBackgroundColor(Color.GREEN);
+                btnPrice3.setBackgroundColor(Color.WHITE);
+                btnPrice4.setBackgroundColor(Color.WHITE);*/
+                setButton(btnPrice2);
+            }
+        });
+        btnPrice3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*btnPrice1.setBackgroundColor(Color.WHITE);
+                btnPrice2.setBackgroundColor(Color.WHITE);
+                btnPrice3.setBackgroundColor(Color.GREEN);
+                btnPrice4.setBackgroundColor(Color.WHITE);*/
+                setButton(btnPrice3);
+
+            }
+        });
+        btnPrice4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*btnPrice1.setBackgroundColor(Color.WHITE);
+                btnPrice2.setBackgroundColor(Color.WHITE);
+                btnPrice3.setBackgroundColor(Color.WHITE);
+                btnPrice4.setBackgroundColor(Color.GREEN);*/
+                setButton(btnPrice4);
+            }
+        });
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +134,13 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
 
     }
-
+    public void setButton(Button b)
+    {
+        btnPrice1.setBackgroundColor(Color.WHITE);
+        btnPrice2.setBackgroundColor(Color.WHITE);
+        btnPrice3.setBackgroundColor(Color.WHITE);
+        btnPrice4.setBackgroundColor(Color.WHITE);
+        b.setBackgroundColor(Color.GREEN);
+    }
 
 }
