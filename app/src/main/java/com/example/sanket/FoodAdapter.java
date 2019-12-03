@@ -57,7 +57,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 public void onClick(View v) {
                     //DataPojo dp = mylst.get(position);
                     listener.myOnClick(v,10);
-
                 }
             });
         }
@@ -65,16 +64,21 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(FoodAdapter.FoodViewHolder holder, final int position) {
-        DataPojo dp = mylst.get(position);
+        final DataPojo dp = mylst.get(position);
         holder.imgFood.setImageResource(dp.getImg());
         holder.tvShopName.setText(dp.getShopName());
         holder.tvFoodName.setText(dp.getFoodName());
         holder.tvRating.setText(dp.getRating());
         holder.tvTime.setText(dp.getTime());
+        //holder.imgFavIcon.setImageResource(dp.getFavIconValue());
+
         holder.imgFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.myOnClick((position+1));
+                //listener.myOnClick((position+1), dp.getShopName(), dp.getFoodName());
+                //listener.myOnClick((position+1), dp.getImg(), dp.getShopName(), dp.getFoodName(), dp.getRating(), dp.getTime(), dp.getFavIconValue());
+                listener.myOnClick((position+1), dp.getImg(), dp.getShopName(), dp.getFoodName(), dp.getRating(), dp.getTime(), R.drawable.fav_icon);
             }
         });
 

@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/android-studio-3-4-2-64-bit/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_close_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/D:/android-studio-3-4-2-64-bit/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_lens_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,7 +29,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="close" />
+                            <entry key="outputName" value="dot" />
                             <entry key="sourceFile" value="C:\Users\Elluminati Developer" />
                           </map>
                         </option>

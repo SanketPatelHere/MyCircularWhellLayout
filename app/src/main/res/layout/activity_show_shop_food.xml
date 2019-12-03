@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.sanket.ShowShopFoodActivity">
     <ImageView
-        android:id="@+id/imgFood"
+        android:id="@+id/imgFood2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         />
@@ -22,7 +25,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp">
             <TextView
-                android:id="@+id/tvShopName"
+                android:id="@+id/tvShopName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pizza Coutry"
@@ -32,7 +35,7 @@
                 android:textColor="#fff"
                 />
             <TextView
-                android:id="@+id/tvFoodName"
+                android:id="@+id/tvFoodName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Italian Pizza"
@@ -42,7 +45,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvRating"
+                android:id="@+id/tvRating2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" 0.0 (0)"
@@ -59,7 +62,7 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
             <TextView
-                android:id="@+id/tvTime"
+                android:id="@+id/tvTime2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="30 mins"
@@ -85,13 +88,13 @@
                 />-->
 
             <ImageView
-                android:id="@+id/imgFavIcon"
+                android:id="@+id/imgFavIcon2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:src="@drawable/fav_icon"
                 android:paddingLeft="50dp"
-                 />
+                />
 
         </LinearLayout>
     </LinearLayout>
@@ -100,4 +103,32 @@
         android:layout_height="2dp"
         android:background="#049285"
         ></LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#034d4e">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#034d4e"
+            android:text="Juice(1 more items)"
+            android:textSize="25sp"
+            android:textColor="#049285"
+            android:gravity="center"/>
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="3dp"
+                android:background="#049285"
+                android:layout_gravity="center"
+                android:gravity="center"
+                ></LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv2"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
 </LinearLayout>

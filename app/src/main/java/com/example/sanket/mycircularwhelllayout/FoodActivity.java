@@ -1,5 +1,6 @@
 package com.example.sanket.mycircularwhelllayout;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.renderscript.Sampler;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -23,6 +25,7 @@ import com.example.sanket.CustomDialogClass;
 import com.example.sanket.DataPojo;
 import com.example.sanket.FoodAdapter;
 import com.example.sanket.MyClickListener;
+import com.example.sanket.ShowShopFoodActivity;
 
 import java.util.ArrayList;
 
@@ -61,12 +64,12 @@ public class FoodActivity extends AppCompatActivity {
         lst = new ArrayList<>();
         lst.add(new DataPojo(R.drawable.chhouitte, 0, "Ice cream parlor", "chocolate ice creame", "0.0", "40 mins"));
         lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.basket_icon, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.bein_etre, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.marche, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.share_icon, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
-        lst.add(new DataPojo(R.drawable.star_icon, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
         lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.bien_bio, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.chhouitte, 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+        lst.add(new DataPojo(R.drawable.bien_bio , 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
 
 
 
@@ -74,12 +77,37 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void myOnClick(int position) {
                 Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
+                //Intent i = new Intent(FoodActivity.this, ShowShopFoodActivity.class);
+                //i.putExtra("data",lst.get(new DataPojo(position)));
+                //i.putExtra("data", lst.get(position));
+                //i.putExtra("data", new DataPojo("Pizza Coutry", "Italian Pizza"));
+                //i.putExtra("data", new DataPojo(R.drawable.bien_bio , 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+                //startActivity(i);
             }
 
             @Override
             public void myOnClick(View v, int position) {
                 Toast.makeText(getApplicationContext(), "MyOnClick with view = "+position, Toast.LENGTH_SHORT).show();
 
+            }
+
+            @Override
+            public void myOnClick(int position, String shopName, String foodName) {
+                Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void myOnClick(int position, int imgFood, String shopName, String foodName, String rating, String time, int imgFavIcon) {
+                Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(FoodActivity.this, ShowShopFoodActivity.class);
+                //i.putExtra("data",lst.get(new DataPojo(position)));
+                //i.putExtra("data", lst.get(position));
+                //i.putExtra("data", new DataPojo("Pizza Coutry", "Italian Pizza"));
+                //i.putExtra("data", new DataPojo(shopName, foodName));
+                i.putExtra("data", new DataPojo(imgFood, imgFavIcon, shopName, foodName, rating, time));
+                //i.putExtra("data", new DataPojo(R.drawable.bien_bio , 0, "Pizza Coutry", "Italian Pizza", "0.0 (0)", "30 mins"));
+                startActivity(i);
             }
 
             @Override
@@ -142,6 +170,11 @@ public class FoodActivity extends AppCompatActivity {
                     Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                     item.setIcon(myDrawable);
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
+
+                /*RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tv.getLayoutParams();
+                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                tv.setLayoutParams(lp);*/
+
                 cd.show();
 
                 return true;
