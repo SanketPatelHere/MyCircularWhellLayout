@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,7 +35,7 @@ import com.example.sanket.mycircularwhelllayout.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowShopFoodActivity extends AppCompatActivity //implements SearchView.OnQueryTextListener
+public class ShowFoodCart extends AppCompatActivity //implements SearchView.OnQueryTextListener
 {
 
     Toolbar toolbar;
@@ -53,14 +54,16 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
     TextView tvQuantity;
     int fav = 0;
     SharedPreferences sp;
+    Button btnCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_shop_food);
+        setContentView(R.layout.activity_show_food_cart);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        final int position = getIntent().getExtras().getInt("position");
+        Log.i("My position = ",position+"");
         imgFood2 = (ImageView)findViewById(R.id.imgFood2);
         tvShopName2 = (TextView) findViewById(R.id.tvShopName2);
         tvFoodName2 = (TextView) findViewById(R.id.tvFoodName2);
@@ -68,6 +71,7 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
         tvTime2 = (TextView) findViewById(R.id.tvTime2);
         imgFavIcon2 = (ImageView)findViewById(R.id.imgFavIcon2);
         tvQuantity = (TextView)findViewById(R.id.tvQuantity);
+        btnCart = (Button) findViewById(R.id.btnCart);
         //Intent i = getIntent();
         //String data = getIntent().getStringExtra("data");
 
@@ -146,9 +150,22 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
 
         sp = getApplicationContext().getSharedPreferences("MyPrefData",0);
         final SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("fav",fav).commit();
+        //editor.putInt("fav",fav).commit();
+        if(sp.getInt("fav",-1)==0)
+        {
+            imgFavIcon2.setImageResource(R.drawable.unselected_fav);
+            Log.i("My unfav = ",sp.getInt("fav",-1)+"");
+        }
+        else if(sp.getInt("fav",-1)==1)
+        {
+            imgFavIcon2.setImageResource(R.drawable.selected_fav);
+            Log.i("My fav = ",sp.getInt("fav",-1)+"");
 
-
+        }
+        else
+        {
+            Log.i("My fav = ","else");
+        }
         imgFavIcon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,13 +175,24 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
                     imgFavIcon2.setImageResource(R.drawable.selected_fav);
                     fav = 1;
                     editor.putInt("fav",fav).commit();
+                    editor.putInt("positionAt",position).commit();
+                    Log.i("My selected fav = ",fav+" "+sp.getInt("fav",-1));
                 }
                 else
                 {
                     imgFavIcon2.setImageResource(R.drawable.unselected_fav);
-                    fav = 0;
+                    //fav = 0;
                     editor.putInt("fav",fav).commit();
+                    editor.putInt("positionAt",position).commit();
+                    Log.i("My unselected fav = ",fav+" "+sp.getInt("fav",-1));
                 }
+            }
+        });
+        
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ShowFoodCart.this, "Cart", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -179,10 +207,10 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
         MenuInflater mi = getMenuInflater();
         mi.inflate(R.menu.search_menu, menu);
 
-        MenuItem item3 = menu.findItem(R.id.likeCart);
+        MenuItem item3 = menu.findItem(R.id.filter);
         item3.setVisible(false);
-        MenuItem item4 = menu.findItem(R.id.basketCart);
-        item4.setVisible(false);
+        /*MenuItem item4 = menu.findItem(R.id.basketCart);
+        item4.setVisible(false);*/
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);
@@ -195,7 +223,7 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(ShowShopFoodActivity.this, "Searching for = "+newText, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShowFoodCart.this, "Searching for = "+newText, Toast.LENGTH_SHORT).show();
 
                 if(newText.isEmpty())
                 {
@@ -252,12 +280,17 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
                 cd.show();
 
                 return true;
-
+            case R.id.likeCart:
+                Toast.makeText(this, "like cart", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.basketCart:
+                Toast.makeText(this, "basket cart", Toast.LENGTH_SHORT).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    
 
 
 }

@@ -35,6 +35,7 @@ import com.example.sanket.FoodAdapter;
 import com.example.sanket.MyClickListener;
 import com.example.sanket.MyScrollingActivity;
 import com.example.sanket.ShopFood;
+import com.example.sanket.ShowFoodCart;
 import com.example.sanket.ShowShopFoodActivity;
 
 import java.util.ArrayList;
@@ -113,7 +114,9 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void myOnClick(int position, int imgFood, String shopName, String foodName, String rating, String time, int imgFavIcon) {
                 Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(FoodActivity.this, ShowShopFoodActivity.class);
+                //Intent i = new Intent(FoodActivity.this, ShowShopFoodActivity.class);
+                Intent i = new Intent(FoodActivity.this, ShowFoodCart.class);
+                i.putExtra("position",position);
                 //Intent i = new Intent(FoodActivity.this, MyScrollingActivity.class);
 
 
@@ -158,6 +161,10 @@ public class FoodActivity extends AppCompatActivity {
         MenuInflater mi = getMenuInflater();
         mi.inflate(R.menu.search_menu, menu);
 
+        MenuItem item3 = menu.findItem(R.id.likeCart);
+        item3.setVisible(false);
+        MenuItem item4 = menu.findItem(R.id.basketCart);
+        item4.setVisible(false);
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);

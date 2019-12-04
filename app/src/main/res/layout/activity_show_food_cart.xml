@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.sanket.ShowFoodCart">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgFood2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/jai_faim" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvShopName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:text="Pizza Coutry"
+                        android:textColor="#fff"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvFoodName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/circle"
+                        android:drawablePadding="5dp"
+                        android:text="Italian Pizza"
+                        android:textColor="#eee" />
+
+                    <TextView
+                        android:id="@+id/tvRating2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/star2"
+                        android:drawablePadding="5dp"
+                        android:text=" 0.0 (0)"
+                        android:textColor="#eee" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTime2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|top"
+                        android:paddingRight="5dp"
+                        android:text="30 mins"
+                        android:textColor="#eee" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|top"
+                        android:textColor="#eee" />
+
+                    <!--<TextView
+                        android:id="@+id/imgFavIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#eee"
+                        android:drawableRight="@drawable/fav_icon"
+                        android:gravity="right|top"
+                        />-->
+
+                    <ImageView
+                        android:id="@+id/imgFavIcon2"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:gravity="right"
+                        android:paddingLeft="50dp"
+                        android:src="@drawable/unselected_fav" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#049285"></LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#1C3D3E"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#034d4e"
+                    android:gravity="center"
+                    android:text="Juice(item)"
+                    android:textColor="#049285"
+                    android:textSize="25sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#034d4e"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="50dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center"
+                        android:background="#049285" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <Button
+        android:id="@+id/btnCart"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#049285"
+        android:gravity="center"
+        android:text="Go to cart"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+</LinearLayout>

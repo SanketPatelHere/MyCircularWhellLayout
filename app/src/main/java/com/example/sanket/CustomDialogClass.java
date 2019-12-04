@@ -211,10 +211,10 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     }
     public void setButtonPrice(Button b)
     {
-        btnPrice1.setBackgroundColor(Color.WHITE);
+        /*btnPrice1.setBackgroundColor(Color.WHITE);
         btnPrice2.setBackgroundColor(Color.WHITE);
         btnPrice3.setBackgroundColor(Color.WHITE);
-        btnPrice4.setBackgroundColor(Color.WHITE);
+        btnPrice4.setBackgroundColor(Color.WHITE);*/
         //b.setBackgroundColor(Color.parseColor("#049285"));
         btnPrice1.setBackgroundResource(R.drawable.square_roundshape2);
         btnPrice2.setBackgroundResource(R.drawable.square_roundshape2);
@@ -224,9 +224,9 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     }
     public void setButtonTime(Button b)
     {
-        btnTime1.setBackgroundColor(Color.WHITE);
+        /*btnTime1.setBackgroundColor(Color.WHITE);
         btnTime2.setBackgroundColor(Color.WHITE);
-        btnTime3.setBackgroundColor(Color.WHITE);
+        btnTime3.setBackgroundColor(Color.WHITE);*/
         /*editor.putString("price",b.getId()+"").commit();
         Log.i("My pref = ", sp.getString("price", "null"));
         String s = sp.getString("price", "null");
@@ -259,9 +259,9 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
 
     public void setButtonDistance(Button b)
     {
-        btnDistance1.setBackgroundColor(Color.WHITE);
+        /*btnDistance1.setBackgroundColor(Color.WHITE);
         btnDistance2.setBackgroundColor(Color.WHITE);
-        btnDistance3.setBackgroundColor(Color.WHITE);
+        btnDistance3.setBackgroundColor(Color.WHITE);*/
         //b.setBackgroundColor(Color.parseColor("#049285"));
 
         btnDistance1.setBackgroundResource(R.drawable.square_roundshape2);
@@ -272,19 +272,19 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
 
     public void setButtonZone(Button b)
     {
-        btnZone1.setBackgroundColor(Color.WHITE);
-        btnZone2.setBackgroundColor(Color.WHITE);
+        /*btnZone1.setBackgroundColor(Color.WHITE);
+        btnZone2.setBackgroundColor(Color.WHITE);*/
         //b.setBackgroundColor(Color.parseColor("#049285"));
 
         btnZone1.setBackgroundResource(R.drawable.square_roundshape2);
-        btnTag2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnZone2.setBackgroundResource(R.drawable.square_roundshape2);
         b.setBackgroundResource(R.drawable.square_roundshape);
     }
 
     public void setButtonTag(Button b)
     {
-        btnTag1.setBackgroundColor(Color.WHITE);
-        btnTag2.setBackgroundColor(Color.WHITE);
+        /*btnTag1.setBackgroundColor(Color.WHITE);
+        btnTag2.setBackgroundColor(Color.WHITE);*/
         //b.setBackgroundColor(Color.parseColor("#049285"));
         //b.setBackground(R.drawable.square_roundshape);
 

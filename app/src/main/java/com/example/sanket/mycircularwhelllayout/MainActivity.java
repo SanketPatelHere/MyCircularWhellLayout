@@ -176,6 +176,12 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
 
         MenuItem item2 = menu.findItem(R.id.filter);
         item2.setVisible(false);
+        MenuItem item3 = menu.findItem(R.id.likeCart);
+        item3.setVisible(false);
+        MenuItem item4 = menu.findItem(R.id.basketCart);
+        item4.setVisible(false);
+        MenuItem item5 = menu.findItem(R.id.search);
+        item5.setVisible(false);
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);
