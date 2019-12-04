@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" 0.0 (0)"
+                android:layout_gravity="center"
                 android:textColor="#eee"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/star2"
@@ -97,7 +98,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="#049285"
         ></LinearLayout>
 </LinearLayout>

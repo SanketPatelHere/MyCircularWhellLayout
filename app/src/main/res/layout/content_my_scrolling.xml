@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.sanket.MyScrollingActivity"
+    tools:showIn="@layout/activity_my_scrolling">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/imgFood2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/jai_faim"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7"
+                />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#034d4e">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp">
+                    <TextView
+                        android:id="@+id/tvShopName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pizza Coutry"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:paddingRight="10dp"
+                        android:textColor="#fff"
+                        />
+                    <TextView
+                        android:id="@+id/tvFoodName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Italian Pizza"
+                        android:textColor="#eee"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@drawable/circle"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvRating2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=" 0.0 (0)"
+                        android:textColor="#eee"
+                        android:drawablePadding="5dp"
+                        android:drawableLeft="@drawable/star2"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="10dp">
+                    <TextView
+                        android:id="@+id/tvTime2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="30 mins"
+                        android:textColor="#eee"
+                        android:paddingRight="5dp"
+                        android:gravity="right|top"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#eee"
+                        android:gravity="right|top"
+                        />
+
+                    <!--<TextView
+                        android:id="@+id/imgFavIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#eee"
+                        android:drawableRight="@drawable/fav_icon"
+                        android:gravity="right|top"
+                        />-->
+
+                    <ImageView
+                        android:id="@+id/imgFavIcon2"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:gravity="right"
+                        android:src="@drawable/unselected_fav"
+                        android:paddingLeft="50dp"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#049285"
+                ></LinearLayout>
+
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#034d4e">
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#034d4e"
+            android:text="Juice(item)"
+            android:textSize="25sp"
+            android:textColor="#049285"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="3dp"
+            android:background="#049285"
+            android:layout_gravity="center"
+            android:gravity="center"
+            ></LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv2"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

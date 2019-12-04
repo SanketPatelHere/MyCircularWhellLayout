@@ -2,6 +2,9 @@ package com.example.sanket.mycircularwhelllayout;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.renderscript.Sampler;
@@ -30,6 +33,7 @@ import com.example.sanket.CustomDialogClass;
 import com.example.sanket.DataPojo;
 import com.example.sanket.FoodAdapter;
 import com.example.sanket.MyClickListener;
+import com.example.sanket.MyScrollingActivity;
 import com.example.sanket.ShopFood;
 import com.example.sanket.ShowShopFoodActivity;
 
@@ -57,6 +61,8 @@ public class FoodActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
 
         /*actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -108,6 +114,12 @@ public class FoodActivity extends AppCompatActivity {
             public void myOnClick(int position, int imgFood, String shopName, String foodName, String rating, String time, int imgFavIcon) {
                 Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(FoodActivity.this, ShowShopFoodActivity.class);
+                //Intent i = new Intent(FoodActivity.this, MyScrollingActivity.class);
+
+
+
+
+
                 //i.putExtra("data",lst.get(new DataPojo(position)));
                 //i.putExtra("data", lst.get(position));
                 //i.putExtra("data", new DataPojo("Pizza Coutry", "Italian Pizza"));
@@ -196,11 +208,13 @@ public class FoodActivity extends AppCompatActivity {
                 //Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
                     Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                     item.setIcon(myDrawable);
+
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
                 cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
                 WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
                 layoutParams.y = 80; // bottom margin  //for put space for top
                 cd.getWindow().setAttributes(layoutParams);
+                //cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.setCancelable(false);  //both same work = not close dialog without yes, no
                 //cd.setCanceledOnTouchOutside(false);
                 cd.show();

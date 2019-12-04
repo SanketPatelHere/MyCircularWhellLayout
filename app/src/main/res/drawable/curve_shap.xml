@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--<shape xmlns:android="http://schemas.android.com/apk/res/android" >
 
         <solid android:color="#000000" />
 
@@ -9,10 +9,32 @@
             android:color="#ffffff" />
 
         <corners
-            android:bottomLeftRadius="20dp"
-            android:bottomRightRadius="20dp"
-            android:topLeftRadius="20dp"
-            android:topRightRadius="20dp" />
+            android:bottomLeftRadius="100dp"
+            android:bottomRightRadius="100dp"
+            android:topLeftRadius="100dp"
+            android:topRightRadius="100dp" />
+
+    </shape>-->
+
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+        <stroke
+            android:width="4dp"
+            android:color="#ed2a4a" />
+
+        <solid
+            android:color="#ed2a4a"
+            />
+
+        // Reduce the corner radius value
+        <corners android:radius="30dp" />
+
+        <padding
+            android:left="20dp"
+            android:top="10dp"
+            android:right="20dp"
+            android:bottom="10dp"    >
+        </padding>
 
     </shape>
 </selector>

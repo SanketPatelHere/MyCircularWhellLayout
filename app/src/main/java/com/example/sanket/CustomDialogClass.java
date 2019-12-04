@@ -3,6 +3,7 @@ package com.example.sanket;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +28,7 @@ import com.example.sanket.mycircularwhelllayout.R;
 public class CustomDialogClass extends Dialog implements View.OnClickListener {
     public Activity c;
     public Dialog d;
-    public Button yes, no;
+    public TextView yes, no;
     MyClickListener listener;
     MenuItem item;
     Button btnPrice1, btnPrice2, btnPrice3, btnPrice4;
@@ -34,7 +36,8 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     Button btnDistance1, btnDistance2, btnDistance3;
     Button btnZone1, btnZone2;
     Button btnTag1, btnTag2;
-            ;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
     public CustomDialogClass(Activity a, MyClickListener listener, MenuItem item) {
         super(a);
         this.c = a;
@@ -47,9 +50,11 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialoglayout);
+        sp = getContext().getSharedPreferences("MyPrefData",0);
+        editor = sp.edit();
 
-        yes = (Button)findViewById(R.id.btnYes);
-        no = (Button)findViewById(R.id.btnNo);
+        yes = (TextView)findViewById(R.id.btnYes);
+        no = (TextView)findViewById(R.id.btnNo);
 
         btnPrice1 = (Button)findViewById(R.id.btnPrice1);
         btnPrice2 = (Button)findViewById(R.id.btnPrice2);
@@ -210,14 +215,46 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
         btnPrice2.setBackgroundColor(Color.WHITE);
         btnPrice3.setBackgroundColor(Color.WHITE);
         btnPrice4.setBackgroundColor(Color.WHITE);
-        b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnPrice1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice3.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice4.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
     }
     public void setButtonTime(Button b)
     {
         btnTime1.setBackgroundColor(Color.WHITE);
         btnTime2.setBackgroundColor(Color.WHITE);
         btnTime3.setBackgroundColor(Color.WHITE);
-        b.setBackgroundColor(Color.parseColor("#049285"));
+        /*editor.putString("price",b.getId()+"").commit();
+        Log.i("My pref = ", sp.getString("price", "null"));
+        String s = sp.getString("price", "null");
+        if(s.equals(btnTime1.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if1", " "+s+" "+b.getId());
+        }
+        if(s.equals(btnTime2.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if2", " "+s+" "+b.getId());
+        }
+        if(s.equals(btnTime3.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if3", " "+s+" "+b.getId());
+        }
+        else
+        {
+            Log.i("My else", " "+s+" "+b.getId());
+
+        }*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnTime1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTime2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTime3.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
     }
 
     public void setButtonDistance(Button b)
@@ -225,21 +262,36 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
         btnDistance1.setBackgroundColor(Color.WHITE);
         btnDistance2.setBackgroundColor(Color.WHITE);
         btnDistance3.setBackgroundColor(Color.WHITE);
-        b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+
+        btnDistance1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnDistance2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnDistance3.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
     }
 
     public void setButtonZone(Button b)
     {
         btnZone1.setBackgroundColor(Color.WHITE);
         btnZone2.setBackgroundColor(Color.WHITE);
-        b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+
+        btnZone1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTag2.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
     }
 
     public void setButtonTag(Button b)
     {
         btnTag1.setBackgroundColor(Color.WHITE);
         btnTag2.setBackgroundColor(Color.WHITE);
-        b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackground(R.drawable.square_roundshape);
+
+        btnTag1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTag2.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+        Drawable d = b.getBackground();
     }
 
 }
