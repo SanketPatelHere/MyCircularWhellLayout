@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -197,26 +198,12 @@ public class FoodActivity extends AppCompatActivity {
                     item.setIcon(myDrawable);
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
                 cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
-
+                WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
+                layoutParams.y = 80; // bottom margin  //for put space for top
+                cd.getWindow().setAttributes(layoutParams);
+                cd.setCancelable(false);  //both same work = not close dialog without yes, no
+                //cd.setCanceledOnTouchOutside(false);
                 cd.show();
-
-                /*RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tv.getLayoutParams();
-                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                tv.setLayoutParams(lp);*/
-
-                /*final Dialog dialog = new Dialog(this,
-                        android.R.style.Theme_Translucent_NoTitleBar);
-                Window window = cd.getWindow();
-                window.setGravity(Gravity.CENTER);
-
-                window.setLayout(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
-                //dialog.setTitle(null);
-                dialog.setContentView(R.layout.dialoglayout);
-                //dialog.setCancelable(true);
-
-                dialog.show();*/
-
-
 
                 return true;
 

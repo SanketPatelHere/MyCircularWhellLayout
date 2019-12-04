@@ -12,10 +12,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/tvDialog"
+            android:id="@+id/tvDialog1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Price"
+            android:layout_marginLeft="10dp"
             android:textStyle="bold"
             android:textSize="15sp"
             />
@@ -60,12 +61,181 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!--Time -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvDialog2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <Button
+                android:id="@+id/btnTime1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="&lt; 20"
+                android:layout_margin="5dp"/>
+            <Button
+                android:id="@+id/btnTime2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="&lt; 60"
+                android:layout_margin="5dp"
+                />
+            <Button
+                android:id="@+id/btnTime3"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="&lt; 120"
+                android:layout_margin="5dp"
+                />
 
+        </LinearLayout>
+    </LinearLayout>
 
+    <!--Distance -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvDialog3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <Button
+                android:id="@+id/btnDistance1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="&lt; 5"
+                android:layout_margin="5dp"/>
+            <Button
+                android:id="@+id/btnDistance2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="&lt; 15"
+                android:layout_margin="5dp"
+                />
+            <Button
+                android:id="@+id/btnDistance3"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="&lt; 25"
+                android:layout_margin="5dp"
+                />
 
+        </LinearLayout>
+    </LinearLayout>
 
+    <!--Zone -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvDialog4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zone"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <Button
+                android:id="@+id/btnZone1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="All"
+                android:layout_margin="5dp"/>
+            <Button
+                android:id="@+id/btnZone2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="3"
+                android:background="#ffffff"
+                android:text="Delivery location only"
+                android:layout_margin="5dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
-
+    <!--Tag -->
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvDialog5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Zone"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <Button
+                android:id="@+id/btnTag1"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:text="Pizza"
+                android:layout_margin="5dp"/>
+            <Button
+                android:id="@+id/btnTag2"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:background="#ffffff"
+                android:text="Chocolate icecreame"
+                android:layout_margin="5dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
 
 
@@ -81,7 +251,7 @@
             android:clickable="true"
             android:layout_margin="5dp"
             android:background="#ffffff"
-            android:text="Yes"
+            android:text="Apply"
             android:textSize="15sp"
             android:textStyle="bold"/>
         <Button
@@ -91,7 +261,7 @@
             android:clickable="true"
             android:layout_margin="5dp"
             android:background="#ffffff"
-            android:text="No"
+            android:text="Reset"
             android:textSize="15sp"
             android:textStyle="bold"/>
 

@@ -1,12 +1,15 @@
 package com.example.sanket;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -96,6 +99,44 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
         lstShopFood.add(new ShopFood(R.drawable.jai_faim, "Aaa cake shop","₹ 20"));
         lstShopFood.add(new ShopFood(R.drawable.marche, "Xyz nuddles","₹ 20"));
         lstShopFood.add(new ShopFood(R.drawable.jai_faim, "Zzz chocolate","₹ 20"));
+
+
+        listener = new MyClickListener() {
+            @Override
+            public void myOnClick(int position) {
+                Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void myOnClick(View v, int position) {
+                //Toast.makeText(getApplicationContext(), "MyOnClick with view = "+position, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void myOnClick(int position, String shopName, String foodName) {
+                Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void myOnClick(int position, int imgFood, String shopName, String foodName, String rating, String time, int imgFavIcon) {
+                Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void myOnLongClick(View v, int position) {
+                Toast.makeText(getApplicationContext(), "MyOnLongClick", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void myOnDialogClose(MenuItem item) {
+                //for once again set filter icon = when dialog close
+                //Toast.makeText(getApplicationContext(), "myOnDialogClose = "+item, Toast.LENGTH_SHORT).show();
+                item.setIcon(R.drawable.filter_icon);
+            }
+        };
 
         sfd = new ShopFoodAdapter(this, lstShopFood);
         //sfd.notifyDataSetChanged();
@@ -197,11 +238,12 @@ public class ShowShopFoodActivity extends AppCompatActivity //implements SearchV
                 Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                 item.setIcon(myDrawable);
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
-
-                /*RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) tv.getLayoutParams();
-                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                tv.setLayoutParams(lp);*/
-
+                cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
+                WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
+                layoutParams.y = 100; // bottom margin  //for put space for top
+                cd.getWindow().setAttributes(layoutParams);
+                cd.setCancelable(false);  //both same work = not close dialog without yes, no
+                //cd.setCanceledOnTouchOutside(false);
                 cd.show();
 
                 return true;

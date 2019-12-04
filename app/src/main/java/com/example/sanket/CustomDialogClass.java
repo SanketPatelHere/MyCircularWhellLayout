@@ -30,6 +30,11 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     MyClickListener listener;
     MenuItem item;
     Button btnPrice1, btnPrice2, btnPrice3, btnPrice4;
+    Button btnTime1, btnTime2, btnTime3;
+    Button btnDistance1, btnDistance2, btnDistance3;
+    Button btnZone1, btnZone2;
+    Button btnTag1, btnTag2;
+            ;
     public CustomDialogClass(Activity a, MyClickListener listener, MenuItem item) {
         super(a);
         this.c = a;
@@ -50,69 +55,133 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
         btnPrice2 = (Button)findViewById(R.id.btnPrice2);
         btnPrice3 = (Button)findViewById(R.id.btnPrice3);
         btnPrice4 = (Button)findViewById(R.id.btnPrice4);
+
+        btnTime1 = (Button)findViewById(R.id.btnTime1);
+        btnTime2 = (Button)findViewById(R.id.btnTime2);
+        btnTime3 = (Button)findViewById(R.id.btnTime3);
+
+        btnDistance1 = (Button)findViewById(R.id.btnDistance1);
+        btnDistance2 = (Button)findViewById(R.id.btnDistance2);
+        btnDistance3 = (Button)findViewById(R.id.btnDistance3);
+
+        btnZone1 = (Button)findViewById(R.id.btnZone1);
+        btnZone2 = (Button)findViewById(R.id.btnZone2);
+
+        btnTag1 = (Button)findViewById(R.id.btnTag1);
+        btnTag2 = (Button)findViewById(R.id.btnTag2);
+
+
+
+        //1.for price
         btnPrice1.performClick();
         //btnPrice1.setBackgroundColor(Color.WHITE);
         btnPrice1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*btnPrice1.setBackgroundColor(Color.GREEN);
-                btnPrice2.setBackgroundColor(Color.WHITE);
-                btnPrice3.setBackgroundColor(Color.WHITE);
-                btnPrice4.setBackgroundColor(Color.WHITE);*/
-                setButton(btnPrice1);
+                setButtonPrice(btnPrice1);
             }
         });
         btnPrice2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*btnPrice1.setBackgroundColor(Color.WHITE);
-                btnPrice2.setBackgroundColor(Color.GREEN);
-                btnPrice3.setBackgroundColor(Color.WHITE);
-                btnPrice4.setBackgroundColor(Color.WHITE);*/
-                setButton(btnPrice2);
+                setButtonPrice(btnPrice2);
             }
         });
         btnPrice3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*btnPrice1.setBackgroundColor(Color.WHITE);
-                btnPrice2.setBackgroundColor(Color.WHITE);
-                btnPrice3.setBackgroundColor(Color.GREEN);
-                btnPrice4.setBackgroundColor(Color.WHITE);*/
-                setButton(btnPrice3);
+                setButtonPrice(btnPrice3);
 
             }
         });
         btnPrice4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*btnPrice1.setBackgroundColor(Color.WHITE);
-                btnPrice2.setBackgroundColor(Color.WHITE);
-                btnPrice3.setBackgroundColor(Color.WHITE);
-                btnPrice4.setBackgroundColor(Color.GREEN);*/
-                setButton(btnPrice4);
+                setButtonPrice(btnPrice4);
             }
         });
+
+        //2.for time
+        //btnTime1.performClick();
+        btnTime1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTime(btnTime1);
+            }
+        });
+        btnTime2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTime(btnTime2);
+            }
+        });
+        btnTime3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTime(btnTime3);
+            }
+        });
+
+        //3.for distance
+        //btnDistance1.performClick();
+        btnDistance1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonDistance(btnDistance1);
+            }
+        });
+        btnDistance2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonDistance(btnDistance2);
+            }
+        });
+        btnDistance3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonDistance(btnDistance3);
+            }
+        });
+
+        //4.for zone
+        //btnZone1.performClick();
+        btnZone1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonZone(btnZone1);
+            }
+        });
+        btnZone2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonZone(btnZone2);
+            }
+        });
+
+
+        //5.for tag
+        //btnTag1.performClick();
+        btnTag1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTag(btnTag1);
+            }
+        });
+        btnTag2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTag(btnTag2);
+            }
+        });
+
+
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(c, "Yessss", Toast.LENGTH_SHORT).show();
                 listener.myOnDialogClose(item);
                 dismiss();
-
-                /*MenuInflater mi = getMenuInflater();
-                MenuItem item2 = menu.findItem(R.id.filter);
-                int id = item.getItemId();
-                //Log.i("My state = ",""+id);
-                //Drawable myDrawable = getActionBar().getDrawable(R.drawable.filter_icon);
-                item.setIcon(R.drawable.filter_icon);*/
-
-
-
-
                 Log.i("My dialog = ", "dismiss");
-                /*MenuInflater mi = getMenuInflater();
-                mi.inflate(R.menu.search_menu, menu);*/
             }
         });
         no.setOnClickListener(new View.OnClickListener() {
@@ -132,15 +201,45 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        //listener.myOnDialogClose(item);
+        //dismiss();
     }
-    public void setButton(Button b)
+    public void setButtonPrice(Button b)
     {
         btnPrice1.setBackgroundColor(Color.WHITE);
         btnPrice2.setBackgroundColor(Color.WHITE);
         btnPrice3.setBackgroundColor(Color.WHITE);
         btnPrice4.setBackgroundColor(Color.WHITE);
-        b.setBackgroundColor(Color.GREEN);
+        b.setBackgroundColor(Color.parseColor("#049285"));
+    }
+    public void setButtonTime(Button b)
+    {
+        btnTime1.setBackgroundColor(Color.WHITE);
+        btnTime2.setBackgroundColor(Color.WHITE);
+        btnTime3.setBackgroundColor(Color.WHITE);
+        b.setBackgroundColor(Color.parseColor("#049285"));
+    }
+
+    public void setButtonDistance(Button b)
+    {
+        btnDistance1.setBackgroundColor(Color.WHITE);
+        btnDistance2.setBackgroundColor(Color.WHITE);
+        btnDistance3.setBackgroundColor(Color.WHITE);
+        b.setBackgroundColor(Color.parseColor("#049285"));
+    }
+
+    public void setButtonZone(Button b)
+    {
+        btnZone1.setBackgroundColor(Color.WHITE);
+        btnZone2.setBackgroundColor(Color.WHITE);
+        b.setBackgroundColor(Color.parseColor("#049285"));
+    }
+
+    public void setButtonTag(Button b)
+    {
+        btnTag1.setBackgroundColor(Color.WHITE);
+        btnTag2.setBackgroundColor(Color.WHITE);
+        b.setBackgroundColor(Color.parseColor("#049285"));
     }
 
 }
