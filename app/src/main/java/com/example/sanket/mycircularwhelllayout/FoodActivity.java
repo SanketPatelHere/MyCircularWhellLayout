@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -30,6 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sanket.CustomDialogClass;
+import com.example.sanket.CustomDialogClass2;
 import com.example.sanket.DataPojo;
 import com.example.sanket.FoodAdapter;
 import com.example.sanket.MyClickListener;
@@ -54,6 +56,7 @@ public class FoodActivity extends AppCompatActivity {
     DataPojo dp;
     FoodAdapter fa;
     MyClickListener listener;
+    CustomDialogClass2 cd2;
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +145,7 @@ public class FoodActivity extends AppCompatActivity {
                 //for once again set filter icon = when dialog close
                 //Toast.makeText(getApplicationContext(), "myOnDialogClose = "+item, Toast.LENGTH_SHORT).show();
                 item.setIcon(R.drawable.filter_icon);
+                cd2.dismiss();
             }
         };
 
@@ -216,16 +220,46 @@ public class FoodActivity extends AppCompatActivity {
                     Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                     item.setIcon(myDrawable);
 
+                cd2 = new CustomDialogClass2(this, listener, item);
+                cd2.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
+                WindowManager.LayoutParams layoutParams2 = cd2.getWindow().getAttributes();
+                layoutParams2.y = 40;
+
+                int color = Color.TRANSPARENT;
+               //cd2.getWindow().setBackgroundDrawable(R.layout.lv_triangle);
+                //cd2.setCancelable(false);
+                cd2.show();
+
+
+
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
                 cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
+
                 WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
                 layoutParams.y = 80; // bottom margin  //for put space for top
-                cd.getWindow().setAttributes(layoutParams);
+                //cd.getWindow().setAttributes(layoutParams);
                 //cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.setCancelable(false);  //both same work = not close dialog without yes, no
                 //cd.setCanceledOnTouchOutside(false);
-                cd.show();
 
+                /*View view = getLayoutInflater().inflate(R.layout.lv_triangle,null);
+                final AlertDialog myDialog = new AlertDialog.Builder(FoodActivity.this)
+                        .setView(view)
+                        .create();
+                //infoDialog.show();
+                Window window = cd.getWindow();
+                WindowManager.LayoutParams wlp = window.getAttributes();
+                wlp.y = 60;
+
+                wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+                cd.getWindow().setAttributes(wlp);*/
+
+                //cd.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                //cd.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND); // This flag is required to set otherwise the setDimAmount method will not show any effect
+                //cd.getWindow().setDimAmount(0.5f); //0 for no dim to 1 for full dim
+
+
+                cd.show();
                 return true;
 
             default:
