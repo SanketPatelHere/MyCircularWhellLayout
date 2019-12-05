@@ -6,20 +6,29 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.renderscript.Sampler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,6 +67,16 @@ public class FoodActivity extends AppCompatActivity {
     FoodAdapter fa;
     MyClickListener listener;
     CustomDialogClass2 cd2;
+    FrameLayout viewFrame;
+    //CustomDialogClass
+    Button btnPrice1, btnPrice2, btnPrice3, btnPrice4;
+    Button btnTime1, btnTime2, btnTime3;
+    Button btnDistance1, btnDistance2, btnDistance3;
+    Button btnZone1, btnZone2;
+    Button btnTag1, btnTag2;
+    TextView yes, no;
+
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +85,7 @@ public class FoodActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        viewFrame = (FrameLayout) findViewById(R.id.viewFrame);
 
 
 
@@ -146,7 +166,9 @@ public class FoodActivity extends AppCompatActivity {
                 //for once again set filter icon = when dialog close
                 //Toast.makeText(getApplicationContext(), "myOnDialogClose = "+item, Toast.LENGTH_SHORT).show();
                 item.setIcon(R.drawable.filter_icon);
-                cd2.dismiss();
+                //cd2.dismiss();
+                viewFrame.setVisibility(View.GONE);
+
             }
         };
 
@@ -208,6 +230,7 @@ public class FoodActivity extends AppCompatActivity {
         });
         return true;
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -221,37 +244,287 @@ public class FoodActivity extends AppCompatActivity {
                     Drawable myDrawable = getResources().getDrawable(R.drawable.close);
                     item.setIcon(myDrawable);
 
-                cd2 = new CustomDialogClass2(this, listener, item);
-                cd2.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
-                WindowManager.LayoutParams layoutParams2 = cd2.getWindow().getAttributes();
-                layoutParams2.x = 30;
-                layoutParams2.y = 70;
-                cd2.show();
+                ///////////////////////////////////////////
+                //viewFrame
+                viewFrame.setVisibility(View.VISIBLE);
 
-                //////////////////////
+                View v = getLayoutInflater().inflate(R.layout.dialoglayout, null, false);
+                viewFrame.addView(v);
+                //viewFrame.setFocusableInTouchMode(false);
+                //viewFrame.childHasTransientStateChanged(v, false);
+                //viewFrame.clearChildFocus(v);
+
+                setData(item);
+                //viewFrame.setCancelable(false);
 
 
-                ///////////////////////
+                /////////////////////////////////////////////
 
 
-
-
+                /*
                 CustomDialogClass cd = new CustomDialogClass(this, listener, item);
                 cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
 
                 WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
-                layoutParams.x = 10;
-                layoutParams.y = 110; // bottom margin  //for put space for top
+                //layoutParams.x = 2;  //10
+                layoutParams.y = 60; //110 // bottom margin  //for put space for top
                 //cd.getWindow().setAttributes(layoutParams);
-                cd.getWindow().setBackgroundDrawableResource(R.drawable.dialog_roundshape);
-                //cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //cd.getWindow().setBackgroundDrawableResource(R.drawable.dialog_roundshape);
+                cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.setCancelable(false);  //both same work = not close dialog without yes, no
                 //cd.setCanceledOnTouchOutside(false);
-                cd.show();
+
+                //cd.show();
+*/
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+
+
+    //for CustomDialogClass function
+    public void setButtonPrice(Button b)
+    {
+        /*btnPrice1.setBackgroundColor(Color.WHITE);
+        btnPrice2.setBackgroundColor(Color.WHITE);
+        btnPrice3.setBackgroundColor(Color.WHITE);
+        btnPrice4.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnPrice1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice3.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice4.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+    public void setButtonTime(Button b)
+    {
+        /*btnTime1.setBackgroundColor(Color.WHITE);
+        btnTime2.setBackgroundColor(Color.WHITE);
+        btnTime3.setBackgroundColor(Color.WHITE);*/
+        /*editor.putString("price",b.getId()+"").commit();
+        Log.i("My pref = ", sp.getString("price", "null"));
+        String s = sp.getString("price", "null");
+        if(s.equals(btnTime1.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if1", " "+s+" "+b.getId());
+        }
+        if(s.equals(btnTime2.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if2", " "+s+" "+b.getId());
+        }
+        if(s.equals(btnTime3.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if3", " "+s+" "+b.getId());
+        }
+        else
+        {
+            Log.i("My else", " "+s+" "+b.getId());
+
+        }*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnTime1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTime2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTime3.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+
+    public void setButtonDistance(Button b)
+    {
+        /*btnDistance1.setBackgroundColor(Color.WHITE);
+        btnDistance2.setBackgroundColor(Color.WHITE);
+        btnDistance3.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+
+        btnDistance1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnDistance2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnDistance3.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+
+    public void setButtonZone(Button b)
+    {
+        /*btnZone1.setBackgroundColor(Color.WHITE);
+        btnZone2.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+
+        btnZone1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnZone2.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+
+    public void setButtonTag(Button b)
+    {
+        /*btnTag1.setBackgroundColor(Color.WHITE);
+        btnTag2.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackground(R.drawable.square_roundshape);
+
+        btnTag1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTag2.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+        Drawable d = b.getBackground();
+    }
+
+    public void setData(final MenuItem item)
+    {
+        //CustomDialogClass start/////////////////////////////////
+        yes = (TextView)findViewById(R.id.btnYes);
+        no = (TextView)findViewById(R.id.btnNo);
+
+        btnPrice1 = (Button)findViewById(R.id.btnPrice1);
+        btnPrice2 = (Button)findViewById(R.id.btnPrice2);
+        btnPrice3 = (Button)findViewById(R.id.btnPrice3);
+        btnPrice4 = (Button)findViewById(R.id.btnPrice4);
+
+        btnTime1 = (Button)findViewById(R.id.btnTime1);
+        btnTime2 = (Button)findViewById(R.id.btnTime2);
+        btnTime3 = (Button)findViewById(R.id.btnTime3);
+
+        btnDistance1 = (Button)findViewById(R.id.btnDistance1);
+        btnDistance2 = (Button)findViewById(R.id.btnDistance2);
+        btnDistance3 = (Button)findViewById(R.id.btnDistance3);
+
+        btnZone1 = (Button)findViewById(R.id.btnZone1);
+        btnZone2 = (Button)findViewById(R.id.btnZone2);
+
+        btnTag1 = (Button)findViewById(R.id.btnTag1);
+        btnTag2 = (Button)findViewById(R.id.btnTag2);
+
+
+
+        //1.for price
+        btnPrice1.performClick();
+        //btnPrice1.setBackgroundColor(Color.WHITE);
+        btnPrice1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonPrice(btnPrice1);
+            }
+        });
+        btnPrice2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonPrice(btnPrice2);
+            }
+        });
+        btnPrice3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonPrice(btnPrice3);
+
+            }
+        });
+        btnPrice4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonPrice(btnPrice4);
+            }
+        });
+
+        //2.for time
+        //btnTime1.performClick();
+        btnTime1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTime(btnTime1);
+            }
+        });
+        btnTime2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTime(btnTime2);
+            }
+        });
+        btnTime3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTime(btnTime3);
+            }
+        });
+
+        //3.for distance
+        //btnDistance1.performClick();
+        btnDistance1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonDistance(btnDistance1);
+            }
+        });
+        btnDistance2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonDistance(btnDistance2);
+            }
+        });
+        btnDistance3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonDistance(btnDistance3);
+            }
+        });
+
+        //4.for zone
+        //btnZone1.performClick();
+        btnZone1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonZone(btnZone1);
+            }
+        });
+        btnZone2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonZone(btnZone2);
+            }
+        });
+
+
+        //5.for tag
+        //btnTag1.performClick();
+        btnTag1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTag(btnTag1);
+            }
+        });
+        btnTag2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setButtonTag(btnTag2);
+            }
+        });
+
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Yessss", Toast.LENGTH_SHORT).show();
+                //listener.myOnDialogClose(item);
+                //dismiss();
+                item.setIcon(R.drawable.filter_icon);
+                viewFrame.setVisibility(View.GONE);
+                Log.i("My dialog = ", "dismiss");
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Noooo", Toast.LENGTH_SHORT).show();
+                //listener.myOnDialogClose(item);
+                //dismiss();
+                item.setIcon(R.drawable.filter_icon);
+                viewFrame.setVisibility(View.GONE);
+                Log.i("My dialog = ", "dismiss");
+
+            }
+        });
+        //CustomDialogClass end/////////////////////////////////
     }
 }
