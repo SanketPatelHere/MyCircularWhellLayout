@@ -140,8 +140,9 @@
 
                     <View
                         android:layout_width="50dp"
-                        android:layout_height="3dp"
+                        android:layout_height="6dp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
                         android:background="#049285" />
                 </LinearLayout>
 

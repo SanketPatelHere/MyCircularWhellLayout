@@ -87,6 +87,7 @@ public class ShowFoodCart extends AppCompatActivity //implements SearchView.OnQu
         Log.i("My getRating", dp.getRating()+"");
         Log.i("My getTime", dp.getTime()+"");
 
+        //for pass data to next screen
         imgFood2.setImageResource(dp.getImg());
         tvFoodName2.setText(dp.getFoodName());
         tvShopName2.setText(dp.getShopName());
@@ -143,7 +144,8 @@ public class ShowFoodCart extends AppCompatActivity //implements SearchView.OnQu
             }
         };
 
-        sfd = new ShopFoodAdapter(this, lstShopFood);
+        sfd = new ShopFoodAdapter(this, lstShopFood, position);
+        //sfd = new ShopFoodAdapter(this, lstShopFood, position, sp.getInt("fav",-1));
         //sfd.notifyDataSetChanged();
         rv2.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         rv2.setAdapter(sfd);
