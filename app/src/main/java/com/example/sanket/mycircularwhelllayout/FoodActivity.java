@@ -229,7 +229,7 @@ public class FoodActivity extends AppCompatActivity {
                 cd2.show();
 
                 //////////////////////
-                 
+
 
                 ///////////////////////
 
@@ -240,7 +240,7 @@ public class FoodActivity extends AppCompatActivity {
                 cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
 
                 WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
-                layoutParams.x = 20;
+                layoutParams.x = 10;
                 layoutParams.y = 110; // bottom margin  //for put space for top
                 //cd.getWindow().setAttributes(layoutParams);
                 cd.getWindow().setBackgroundDrawableResource(R.drawable.dialog_roundshape);
