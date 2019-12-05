@@ -39,6 +39,7 @@ import com.example.sanket.MyScrollingActivity;
 import com.example.sanket.ShopFood;
 import com.example.sanket.ShowFoodCart;
 import com.example.sanket.ShowShopFoodActivity;
+import com.michael.easydialog.EasyDialog;
 
 import java.util.ArrayList;
 
@@ -223,12 +224,15 @@ public class FoodActivity extends AppCompatActivity {
                 cd2 = new CustomDialogClass2(this, listener, item);
                 cd2.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
                 WindowManager.LayoutParams layoutParams2 = cd2.getWindow().getAttributes();
-                layoutParams2.y = 40;
-
-                int color = Color.TRANSPARENT;
-               //cd2.getWindow().setBackgroundDrawable(R.layout.lv_triangle);
-                //cd2.setCancelable(false);
+                layoutParams2.x = 30;
+                layoutParams2.y = 70;
                 cd2.show();
+
+                //////////////////////
+                 
+
+                ///////////////////////
+
 
 
 
@@ -236,29 +240,13 @@ public class FoodActivity extends AppCompatActivity {
                 cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
 
                 WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
-                layoutParams.y = 80; // bottom margin  //for put space for top
+                layoutParams.x = 20;
+                layoutParams.y = 110; // bottom margin  //for put space for top
                 //cd.getWindow().setAttributes(layoutParams);
+                cd.getWindow().setBackgroundDrawableResource(R.drawable.dialog_roundshape);
                 //cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 cd.setCancelable(false);  //both same work = not close dialog without yes, no
                 //cd.setCanceledOnTouchOutside(false);
-
-                /*View view = getLayoutInflater().inflate(R.layout.lv_triangle,null);
-                final AlertDialog myDialog = new AlertDialog.Builder(FoodActivity.this)
-                        .setView(view)
-                        .create();
-                //infoDialog.show();
-                Window window = cd.getWindow();
-                WindowManager.LayoutParams wlp = window.getAttributes();
-                wlp.y = 60;
-
-                wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-                cd.getWindow().setAttributes(wlp);*/
-
-                //cd.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                //cd.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND); // This flag is required to set otherwise the setDimAmount method will not show any effect
-                //cd.getWindow().setDimAmount(0.5f); //0 for no dim to 1 for full dim
-
-
                 cd.show();
                 return true;
 
