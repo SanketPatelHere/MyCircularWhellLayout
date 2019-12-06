@@ -25,6 +25,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     MyClickListener listener;
     SharedPreferences sp;
     int fav = 0;
+    public FoodAdapter(Activity activity, ArrayList<DataPojo> mylst) {
+        this.activity = activity;
+        this.mylst = mylst;
+    }
     public FoodAdapter(Activity activity, ArrayList<DataPojo> mylst, MyClickListener listener) {
         this.activity = activity;
         this.mylst = mylst;

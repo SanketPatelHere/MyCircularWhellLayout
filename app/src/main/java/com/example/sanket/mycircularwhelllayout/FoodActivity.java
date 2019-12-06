@@ -1,5 +1,6 @@
 package com.example.sanket.mycircularwhelllayout;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -59,7 +61,7 @@ public class FoodActivity extends AppCompatActivity {
     ActionBar actionBar;
     MenuItem search;
     SearchView searchView;
-
+    LinearLayout lv1, lv2;
     RecyclerView rv;
     ArrayList<DataPojo> lst;
     ArrayList<DataPojo> filterList;
@@ -75,7 +77,7 @@ public class FoodActivity extends AppCompatActivity {
     Button btnZone1, btnZone2;
     Button btnTag1, btnTag2;
     TextView yes, no;
-
+    View v;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -86,6 +88,8 @@ public class FoodActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         viewFrame = (FrameLayout) findViewById(R.id.viewFrame);
+        lv1 = (LinearLayout) findViewById(R.id.lv1);
+        lv2 = (LinearLayout) findViewById(R.id.lv2);
 
 
 
@@ -110,8 +114,7 @@ public class FoodActivity extends AppCompatActivity {
         lst.add(new DataPojo(R.drawable.jai_faim , 0, "Chocolate shake", "Italian Pizza", "0.0 (0)", "30 mins"));
 
 
-
-        listener = new MyClickListener() {
+         listener = new MyClickListener() {
             @Override
             public void myOnClick(int position) {
                 Toast.makeText(getApplicationContext(), "MyOnClick = "+position, Toast.LENGTH_SHORT).show();
@@ -172,6 +175,7 @@ public class FoodActivity extends AppCompatActivity {
             }
         };
 
+        //fa = new FoodAdapter(this, lst);
         fa = new FoodAdapter(this, lst, listener);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(fa);
@@ -192,6 +196,8 @@ public class FoodActivity extends AppCompatActivity {
         item3.setVisible(false);
         MenuItem item4 = menu.findItem(R.id.basketCart);
         item4.setVisible(false);
+        MenuItem item5 = menu.findItem(R.id.close);
+        item5.setVisible(false);
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);
@@ -230,172 +236,57 @@ public class FoodActivity extends AppCompatActivity {
         });
         return true;
     }
+    @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         switch (item.getItemId()) {
             //int id = item.getItemId();
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.close:
+                Toast.makeText(this, "Close Clicked", Toast.LENGTH_SHORT).show();
+                Log.e("My close = ",item+"");
+                Log.e("My close = ",item.getItemId()+"");
+                //viewFrame.setVisibility(View.GONE);
             case R.id.filter:
-                //Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
-                    Drawable myDrawable = getResources().getDrawable(R.drawable.close);
-                    item.setIcon(myDrawable);
-
-                ///////////////////////////////////////////
-                //viewFrame
-                viewFrame.setVisibility(View.VISIBLE);
-
-                View v = getLayoutInflater().inflate(R.layout.dialoglayout, null, false);
-                viewFrame.addView(v);
-                //viewFrame.setFocusableInTouchMode(false);
-                //viewFrame.childHasTransientStateChanged(v, false);
-                //viewFrame.clearChildFocus(v);
-
-                setData(item);
-                //viewFrame.setCancelable(false);
-
-
-                /////////////////////////////////////////////
-
-
-                /*
-                CustomDialogClass cd = new CustomDialogClass(this, listener, item);
-                cd.getWindow().setGravity(Gravity.TOP|Gravity.RIGHT);
-
-                WindowManager.LayoutParams layoutParams = cd.getWindow().getAttributes();
-                //layoutParams.x = 2;  //10
-                layoutParams.y = 60; //110 // bottom margin  //for put space for top
-                //cd.getWindow().setAttributes(layoutParams);
-                //cd.getWindow().setBackgroundDrawableResource(R.drawable.dialog_roundshape);
-                cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                cd.setCancelable(false);  //both same work = not close dialog without yes, no
-                //cd.setCanceledOnTouchOutside(false);
-
-                //cd.show();
-*/
+                OpenFiltrrDialog(item);
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-
-    //for CustomDialogClass function
-    public void setButtonPrice(Button b)
+    void OpenFiltrrDialog(final MenuItem item)
     {
-        /*btnPrice1.setBackgroundColor(Color.WHITE);
-        btnPrice2.setBackgroundColor(Color.WHITE);
-        btnPrice3.setBackgroundColor(Color.WHITE);
-        btnPrice4.setBackgroundColor(Color.WHITE);*/
-        //b.setBackgroundColor(Color.parseColor("#049285"));
-        btnPrice1.setBackgroundResource(R.drawable.square_roundshape2);
-        btnPrice2.setBackgroundResource(R.drawable.square_roundshape2);
-        btnPrice3.setBackgroundResource(R.drawable.square_roundshape2);
-        btnPrice4.setBackgroundResource(R.drawable.square_roundshape2);
-        b.setBackgroundResource(R.drawable.square_roundshape);
-    }
-    public void setButtonTime(Button b)
-    {
-        /*btnTime1.setBackgroundColor(Color.WHITE);
-        btnTime2.setBackgroundColor(Color.WHITE);
-        btnTime3.setBackgroundColor(Color.WHITE);*/
-        /*editor.putString("price",b.getId()+"").commit();
-        Log.i("My pref = ", sp.getString("price", "null"));
-        String s = sp.getString("price", "null");
-        if(s.equals(btnTime1.getId()+""))
-        {
-            b.setBackgroundColor(Color.GREEN);
-            Log.i("My if1", " "+s+" "+b.getId());
-        }
-        if(s.equals(btnTime2.getId()+""))
-        {
-            b.setBackgroundColor(Color.GREEN);
-            Log.i("My if2", " "+s+" "+b.getId());
-        }
-        if(s.equals(btnTime3.getId()+""))
-        {
-            b.setBackgroundColor(Color.GREEN);
-            Log.i("My if3", " "+s+" "+b.getId());
-        }
-        else
-        {
-            Log.i("My else", " "+s+" "+b.getId());
+        v = getLayoutInflater().inflate(R.layout.dialoglayout, null, false);
+        viewFrame.addView(v);
+        viewFrame.setTop(-5);
 
-        }*/
-        //b.setBackgroundColor(Color.parseColor("#049285"));
-        btnTime1.setBackgroundResource(R.drawable.square_roundshape2);
-        btnTime2.setBackgroundResource(R.drawable.square_roundshape2);
-        btnTime3.setBackgroundResource(R.drawable.square_roundshape2);
-        b.setBackgroundResource(R.drawable.square_roundshape);
-    }
+        yes = (TextView)v.findViewById(R.id.btnYes);
+        no = (TextView)v.findViewById(R.id.btnNo);
 
-    public void setButtonDistance(Button b)
-    {
-        /*btnDistance1.setBackgroundColor(Color.WHITE);
-        btnDistance2.setBackgroundColor(Color.WHITE);
-        btnDistance3.setBackgroundColor(Color.WHITE);*/
-        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnPrice1 = (Button)v.findViewById(R.id.btnPrice1);
+        btnPrice2 = (Button)v.findViewById(R.id.btnPrice2);
+        btnPrice3 = (Button)v.findViewById(R.id.btnPrice3);
+        btnPrice4 = (Button)v.findViewById(R.id.btnPrice4);
 
-        btnDistance1.setBackgroundResource(R.drawable.square_roundshape2);
-        btnDistance2.setBackgroundResource(R.drawable.square_roundshape2);
-        btnDistance3.setBackgroundResource(R.drawable.square_roundshape2);
-        b.setBackgroundResource(R.drawable.square_roundshape);
-    }
+        btnTime1 = (Button)v.findViewById(R.id.btnTime1);
+        btnTime2 = (Button)v.findViewById(R.id.btnTime2);
+        btnTime3 = (Button)v.findViewById(R.id.btnTime3);
 
-    public void setButtonZone(Button b)
-    {
-        /*btnZone1.setBackgroundColor(Color.WHITE);
-        btnZone2.setBackgroundColor(Color.WHITE);*/
-        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnDistance1 = (Button)v.findViewById(R.id.btnDistance1);
+        btnDistance2 = (Button)v.findViewById(R.id.btnDistance2);
+        btnDistance3 = (Button)v.findViewById(R.id.btnDistance3);
 
-        btnZone1.setBackgroundResource(R.drawable.square_roundshape2);
-        btnZone2.setBackgroundResource(R.drawable.square_roundshape2);
-        b.setBackgroundResource(R.drawable.square_roundshape);
-    }
+        btnZone1 = (Button)v.findViewById(R.id.btnZone1);
+        btnZone2 = (Button)v.findViewById(R.id.btnZone2);
 
-    public void setButtonTag(Button b)
-    {
-        /*btnTag1.setBackgroundColor(Color.WHITE);
-        btnTag2.setBackgroundColor(Color.WHITE);*/
-        //b.setBackgroundColor(Color.parseColor("#049285"));
-        //b.setBackground(R.drawable.square_roundshape);
-
-        btnTag1.setBackgroundResource(R.drawable.square_roundshape2);
-        btnTag2.setBackgroundResource(R.drawable.square_roundshape2);
-        b.setBackgroundResource(R.drawable.square_roundshape);
-        Drawable d = b.getBackground();
-    }
-
-    public void setData(final MenuItem item)
-    {
-        //CustomDialogClass start/////////////////////////////////
-        yes = (TextView)findViewById(R.id.btnYes);
-        no = (TextView)findViewById(R.id.btnNo);
-
-        btnPrice1 = (Button)findViewById(R.id.btnPrice1);
-        btnPrice2 = (Button)findViewById(R.id.btnPrice2);
-        btnPrice3 = (Button)findViewById(R.id.btnPrice3);
-        btnPrice4 = (Button)findViewById(R.id.btnPrice4);
-
-        btnTime1 = (Button)findViewById(R.id.btnTime1);
-        btnTime2 = (Button)findViewById(R.id.btnTime2);
-        btnTime3 = (Button)findViewById(R.id.btnTime3);
-
-        btnDistance1 = (Button)findViewById(R.id.btnDistance1);
-        btnDistance2 = (Button)findViewById(R.id.btnDistance2);
-        btnDistance3 = (Button)findViewById(R.id.btnDistance3);
-
-        btnZone1 = (Button)findViewById(R.id.btnZone1);
-        btnZone2 = (Button)findViewById(R.id.btnZone2);
-
-        btnTag1 = (Button)findViewById(R.id.btnTag1);
-        btnTag2 = (Button)findViewById(R.id.btnTag2);
+        btnTag1 = (Button)v.findViewById(R.id.btnTag1);
+        btnTag2 = (Button)v.findViewById(R.id.btnTag2);
 
 
 
@@ -506,8 +397,6 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Yessss", Toast.LENGTH_SHORT).show();
-                //listener.myOnDialogClose(item);
-                //dismiss();
                 item.setIcon(R.drawable.filter_icon);
                 viewFrame.setVisibility(View.GONE);
                 Log.i("My dialog = ", "dismiss");
@@ -517,14 +406,120 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Noooo", Toast.LENGTH_SHORT).show();
-                //listener.myOnDialogClose(item);
-                //dismiss();
                 item.setIcon(R.drawable.filter_icon);
                 viewFrame.setVisibility(View.GONE);
                 Log.i("My dialog = ", "dismiss");
 
             }
         });
+        item.setIcon(R.drawable.close);
+        viewFrame.setVisibility(View.VISIBLE);
+    }
+
+
+
+    //for CustomDialogClass function
+    public void setButtonPrice(Button b)
+    {
+        /*btnPrice1.setBackgroundColor(Color.WHITE);
+        btnPrice2.setBackgroundColor(Color.WHITE);
+        btnPrice3.setBackgroundColor(Color.WHITE);
+        btnPrice4.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnPrice1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice3.setBackgroundResource(R.drawable.square_roundshape2);
+        btnPrice4.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+    public void setButtonTime(Button b)
+    {
+        /*btnTime1.setBackgroundColor(Color.WHITE);
+        btnTime2.setBackgroundColor(Color.WHITE);
+        btnTime3.setBackgroundColor(Color.WHITE);*/
+        /*editor.putString("price",b.getId()+"").commit();
+        Log.i("My pref = ", sp.getString("price", "null"));
+        String s = sp.getString("price", "null");
+        if(s.equals(btnTime1.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if1", " "+s+" "+b.getId());
+        }
+        if(s.equals(btnTime2.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if2", " "+s+" "+b.getId());
+        }
+        if(s.equals(btnTime3.getId()+""))
+        {
+            b.setBackgroundColor(Color.GREEN);
+            Log.i("My if3", " "+s+" "+b.getId());
+        }
+        else
+        {
+            Log.i("My else", " "+s+" "+b.getId());
+
+        }*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        btnTime1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTime2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTime3.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+
+    public void setButtonDistance(Button b)
+    {
+        /*btnDistance1.setBackgroundColor(Color.WHITE);
+        btnDistance2.setBackgroundColor(Color.WHITE);
+        btnDistance3.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+
+        btnDistance1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnDistance2.setBackgroundResource(R.drawable.square_roundshape2);
+        btnDistance3.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+
+    public void setButtonZone(Button b)
+    {
+        /*btnZone1.setBackgroundColor(Color.WHITE);
+        btnZone2.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+
+        btnZone1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnZone2.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+    }
+
+    public void setButtonTag(Button b)
+    {
+        /*btnTag1.setBackgroundColor(Color.WHITE);
+        btnTag2.setBackgroundColor(Color.WHITE);*/
+        //b.setBackgroundColor(Color.parseColor("#049285"));
+        //b.setBackground(R.drawable.square_roundshape);
+
+        btnTag1.setBackgroundResource(R.drawable.square_roundshape2);
+        btnTag2.setBackgroundResource(R.drawable.square_roundshape2);
+        b.setBackgroundResource(R.drawable.square_roundshape);
+        Drawable d = b.getBackground();
+    }
+
+    public void setData(View v, final MenuItem item)
+    {
+
+        Log.i("My item = ",item+"");  //Filter
+        int id2 = R.drawable.close;
+        int b = 1;
+        //if(item.toString().equals("Filter"))
+        if(id2==R.drawable.close)
+        //if(id==)  //2131230825  //2131165301
+        {
+            //viewFrame.setVisibility(View.GONE);
+            Log.i("My View ","Gone");
+        }
+            
+        //CustomDialogClass start/////////////////////////////////
+
         //CustomDialogClass end/////////////////////////////////
     }
 }

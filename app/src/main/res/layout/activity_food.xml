@@ -7,27 +7,41 @@
     tools:context=".FoodActivity"
     android:orientation="vertical"
     android:background="#aaccdd">
-    <FrameLayout
-        android:id="@+id/viewFrame"
+    <LinearLayout
+        android:id="@+id/lv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
         android:elevation="1dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_gravity="top|right"
-        android:visibility="visible">
-        <!--<ImageView
-            android:id="@+id/imageView_close"
+        android:layout_gravity="top|right">
+        <FrameLayout
+            android:id="@+id/viewFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|right"
-            android:clickable="true"
-            android:src="@drawable/close"/>-->
-    </FrameLayout>
+          >
+            <!--<ImageView
+                android:id="@+id/imageView_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:clickable="true"
+                android:src="@drawable/close"/>-->
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ddccaa">
     </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 </RelativeLayout>
