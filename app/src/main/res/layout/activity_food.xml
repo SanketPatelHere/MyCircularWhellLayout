@@ -5,23 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FoodActivity"
-    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
     android:background="#aaccdd">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:elevation="1dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/lv"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:background="#034d4e"
+
+            android:fitsSystemWindows="true"
+            app:subtitleTextColor="#ffffff"
+            app:titleTextColor="#ffffff"
+            app:contentInsetStart="15dp"
+            app:contentInsetLeft="15dp"
+            android:theme="@style/ToolbarTheme"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search for"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="10dp"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:cursorVisible="false"
+                android:paddingLeft="10dp"
+                />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ddccaa"
+            android:layout_weight="1">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/lv1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:elevation="1dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:elevation="2dp"
         android:layout_gravity="top|right">
         <FrameLayout
             android:id="@+id/viewFrame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-
             >
             <!--<ImageView
                 android:id="@+id/imageView_close"
@@ -32,17 +77,5 @@
                 android:src="@drawable/close"/>-->
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/lv2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ddccaa">
-    </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+
 </RelativeLayout>

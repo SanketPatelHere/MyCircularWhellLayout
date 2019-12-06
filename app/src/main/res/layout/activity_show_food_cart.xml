@@ -3,9 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.sanket.ShowFoodCart">
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="#034d4e"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:fitsSystemWindows="true"
+        app:subtitleTextColor="#ffffff"
+        app:titleTextColor="#ffffff"
+        app:contentInsetStart="15dp"
+        app:contentInsetLeft="15dp"
+        android:theme="@style/ToolbarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search for..."
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="10dp"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:cursorVisible="false"
+            android:paddingLeft="10dp"
+            />
+    </androidx.appcompat.widget.Toolbar>
     <androidx.core.widget.NestedScrollView
         android:id="@+id/sv"
         android:layout_width="match_parent"
@@ -16,7 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:descendantFocusability="blocksDescendants"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <ImageView
                 android:id="@+id/imgFood2"

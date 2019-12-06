@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -77,6 +78,7 @@ public class FoodActivity extends AppCompatActivity {
     Button btnZone1, btnZone2;
     Button btnTag1, btnTag2;
     TextView yes, no;
+    ImageView closedialog;
     View v;
 
     @SuppressLint("RestrictedApi")
@@ -84,12 +86,16 @@ public class FoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         viewFrame = (FrameLayout) findViewById(R.id.viewFrame);
         lv1 = (LinearLayout) findViewById(R.id.lv1);
-        lv2 = (LinearLayout) findViewById(R.id.lv2);
+        //lv2 = (LinearLayout) findViewById(R.id.lv2);
 
 
 
@@ -266,6 +272,7 @@ public class FoodActivity extends AppCompatActivity {
 
         yes = (TextView)v.findViewById(R.id.btnYes);
         no = (TextView)v.findViewById(R.id.btnNo);
+        closedialog = (ImageView)v.findViewById(R.id.closedialog);
 
         btnPrice1 = (Button)v.findViewById(R.id.btnPrice1);
         btnPrice2 = (Button)v.findViewById(R.id.btnPrice2);
@@ -390,7 +397,27 @@ public class FoodActivity extends AppCompatActivity {
             }
         });
 
-
+        closedialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "closeeee", Toast.LENGTH_SHORT).show();
+                Log.i("My close dialog = ", "inside close dialog");
+                //item.setIcon(R.drawable.filter_icon);
+                //viewFrame.setVisibility(View.GONE);
+                if(viewFrame.getVisibility() == View.VISIBLE)
+                {
+                    viewFrame.setVisibility(View.GONE);
+                    item.setIcon(R.drawable.filter_icon);
+                    Log.i("My visibility close1 = ",viewFrame.getVisibility()+"");
+                }
+                else
+                {
+                    viewFrame.setVisibility(View.VISIBLE);
+                    Log.i("My visibility close2 = ",viewFrame.getVisibility()+"");
+                }
+                Log.i("My close dialog = ", "dismiss");
+            }
+        });
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -410,7 +437,11 @@ public class FoodActivity extends AppCompatActivity {
 
             }
         });
-        item.setIcon(R.drawable.close);
+        item.setIcon(null);
+        item.setTitle(null);
+
+        //item.setVisible(false);
+        //item.setIcon(R.drawable.close);  //uncomment this
         if(viewFrame.getVisibility() == View.VISIBLE)
         {
             viewFrame.setVisibility(View.GONE);

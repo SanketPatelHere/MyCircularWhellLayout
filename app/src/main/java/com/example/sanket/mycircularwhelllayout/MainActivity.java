@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -121,13 +122,14 @@ public class MainActivity extends AppCompatActivity implements CursorWheelLayout
 
 
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         d = (DrawerLayout)findViewById(R.id.d);
         a = new ActionBarDrawerToggle(this, d, R.string.Open,R.string.Close);
         //a = new ActionBarDrawerToggle(this, d, "open", "close");
         a.syncState();
-
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.nav);
         nv =(NavigationView)findViewById(R.id.nav_view);

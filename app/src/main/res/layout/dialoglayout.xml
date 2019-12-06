@@ -14,8 +14,8 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="right"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-11dp"
-
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="0dp"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -25,11 +25,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingRight="10dp">
-
+            <ImageView
+                android:id="@+id/closedialog"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right"
+                android:background="@drawable/close" />
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="10dp"
                 android:layout_gravity="right"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/triangle" />
         </LinearLayout>
 
@@ -302,6 +308,7 @@
                     android:clickable="true"
                     android:gravity="right|center_vertical"
                     android:text="Apply"
+                    android:paddingRight="5dp"
                     android:textColor="#000"
                     android:textSize="15sp" />
 
@@ -314,6 +321,7 @@
                     android:clickable="true"
                     android:gravity="right|center_vertical"
                     android:text="Reset"
+                    android:paddingRight="5dp"
                     android:textColor="#000"
                     android:textSize="15sp" />
 
