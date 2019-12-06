@@ -196,8 +196,6 @@ public class FoodActivity extends AppCompatActivity {
         item3.setVisible(false);
         MenuItem item4 = menu.findItem(R.id.basketCart);
         item4.setVisible(false);
-        MenuItem item5 = menu.findItem(R.id.close);
-        item5.setVisible(false);
 
         search = menu.findItem(R.id.search);
         searchView  = (SearchView) MenuItemCompat.getActionView(search);
@@ -247,11 +245,7 @@ public class FoodActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.close:
-                Toast.makeText(this, "Close Clicked", Toast.LENGTH_SHORT).show();
-                Log.e("My close = ",item+"");
-                Log.e("My close = ",item.getItemId()+"");
-                //viewFrame.setVisibility(View.GONE);
+
             case R.id.filter:
                 OpenFiltrrDialog(item);
                 return true;
@@ -264,7 +258,11 @@ public class FoodActivity extends AppCompatActivity {
     {
         v = getLayoutInflater().inflate(R.layout.dialoglayout, null, false);
         viewFrame.addView(v);
-        viewFrame.setTop(-5);
+        viewFrame.setForegroundGravity(Gravity.TOP|Gravity.RIGHT);
+        //viewFrame.setTop(-5);
+        viewFrame.setX(2);
+        //viewFrame.setY(-20);
+
 
         yes = (TextView)v.findViewById(R.id.btnYes);
         no = (TextView)v.findViewById(R.id.btnNo);
@@ -413,7 +411,17 @@ public class FoodActivity extends AppCompatActivity {
             }
         });
         item.setIcon(R.drawable.close);
-        viewFrame.setVisibility(View.VISIBLE);
+        if(viewFrame.getVisibility() == View.VISIBLE)
+        {
+            viewFrame.setVisibility(View.GONE);
+            item.setIcon(R.drawable.filter_icon);
+            Log.i("My visibility1 = ",viewFrame.getVisibility()+"");
+        }
+        else
+        {
+            viewFrame.setVisibility(View.VISIBLE);
+            Log.i("My visibility2 = ",viewFrame.getVisibility()+"");
+        }
     }
 
 
@@ -504,22 +512,5 @@ public class FoodActivity extends AppCompatActivity {
         Drawable d = b.getBackground();
     }
 
-    public void setData(View v, final MenuItem item)
-    {
 
-        Log.i("My item = ",item+"");  //Filter
-        int id2 = R.drawable.close;
-        int b = 1;
-        //if(item.toString().equals("Filter"))
-        if(id2==R.drawable.close)
-        //if(id==)  //2131230825  //2131165301
-        {
-            //viewFrame.setVisibility(View.GONE);
-            Log.i("My View ","Gone");
-        }
-            
-        //CustomDialogClass start/////////////////////////////////
-
-        //CustomDialogClass end/////////////////////////////////
-    }
 }
